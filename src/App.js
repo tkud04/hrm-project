@@ -1,9 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Routes,
+  Route,
+  useRoutes
+  /*Link,
+  useNavigate,
+  useLocation,
+  Navigate,
+  Outlet,*/
+} from "react-router-dom"
+
+import {BrowserRouter as Router} from 'react-router-dom'
+
+
+import logo from './logo.svg'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
+
+return (
+  <Router>
+    <Routes>
+    <Route path="/" element={<HomePage/>}/>
+    </Routes>
+  </Router>
+)
+}
+
+const HomePage = () => (
+   <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +45,6 @@ function App() {
         </a>
       </header>
     </div>
-  );
-}
+)
 
 export default App;
