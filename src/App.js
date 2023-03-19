@@ -1,9 +1,6 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
   Routes,
   Route,
-  useRoutes
   /*Link,
   useNavigate,
   useLocation,
@@ -12,7 +9,8 @@ import {
 } from "react-router-dom"
 
 import {BrowserRouter as Router} from 'react-router-dom'
-import HomePage from "./pages/Home"
+import Layout from "./pages/Layout"
+import Home from "./pages/Home"
 import './App.css'
 
 function App() {
@@ -20,7 +18,9 @@ function App() {
 return (
   <Router>
     <Routes>
-    <Route path="/" element={<HomePage/>}/>
+       <Route element={<Layout/>}>
+        <Route path="/" element={<Home/>}/>
+       </Route>    
     </Routes>
   </Router>
 )

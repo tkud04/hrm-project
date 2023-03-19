@@ -24,7 +24,45 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    
+    <!-- styles/scripts-->
+     <link rel="stylesheet" href="%PUBLIC_URL%/app/css/bootstrap.css"/>
+
+     <!-- Icon CSS -->
+     <link href="%PUBLIC_URL%/app/css/themify-icons.css" rel="stylesheet">
+
+     <!-- FontAwesome --
+     <link rel="stylesheet" href="plugins/fontawesome/css/font-awesome.css">
+     -->
+
+     <!-- Owl Carousel CSS -->
+     <link href="%PUBLIC_URL%/app/css/owl.carousel.css" rel="stylesheet">
+     <link href="%PUBLIC_URL%/app/css/owl.theme.default.min.css" rel="stylesheet">
+
+     <!-- Magnific-popup -->
+     <link rel="stylesheet" href="%PUBLIC_URL%/app/css/magnific-popup.css">
+
+     <link rel="stylesheet" href="%PUBLIC_URL%/app/css/app.css"/>
+
+     <script src="%PUBLIC_URL%/app/js/jquery.js"></script>
+     <script src="%PUBLIC_URL%/app/js/bootstrap.js"></script>
+
+      <!-- Sticky Header -->
+      <script src="%PUBLIC_URL%/app/js/jquery.sticky.js"></script>
+
+      <!-- Jquery easing -->                                                      
+      <script src="%PUBLIC_URL%/app/js/jquery.easing.1.4.1.js"></script>
+
+      <!-- Owl Carousel -->                                                      
+      <script src="%PUBLIC_URL%/app/js/owl.carousel.min.js"></script>
+
+      <!-- Magnific Popup -->
+      <script src="%PUBLIC_URL%/app/js/jquery.magnific-popup.js"></script>
+
+
+     <script src="%PUBLIC_URL%/app/js/landing.js"></script>
+    <!-- styles/scripts-->
+    <title>Trading Platform</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +77,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      jQuery(document).ready(function($) {
+          $('.owl-carousel').owlCarousel({
+              loop:true,
+              margin:10,
+              nav:false,
+              autoplay: true,
+              autoplayTimeout: 4000,
+              responsive:{
+                  0:{
+                      items:1
+                  }
+              }
+          });
+      });
+  </script>
   </body>
 </html>
