@@ -36,7 +36,7 @@ const Layout = () => {
             <i className="ti-menu"></i>
         </button>
         {/* LOGO */}
-        <a className="navbar-brand logo" href="landing.html">
+        <a className="navbar-brand logo" href="/">
             <i className="fa fa-bitcoin"></i> HRM DEMO
         </a>
     </div>
@@ -48,11 +48,7 @@ const Layout = () => {
              <li className="active">
                 <a href="/home">Home</a>
             </li>
-           
-            <li>
-                <a href="/about">About</a>
-            </li>
-
+        
             <li>
                 <a href="/contact">Contact</a>
             </li>
@@ -96,7 +92,7 @@ const Layout = () => {
 
                     <div className="col-md-4 col-sm-12">
                         <h4 className="logo"><i className="fa fa-bitcoin"></i> HRM DEMO</h4>
-                        <p>Architecto beatae vitae dicta sunt explicabo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
+                        <p>This is a sample long text just to fill space. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
 
                         <ul className="list-inline social">
                             <li>
@@ -120,22 +116,19 @@ const Layout = () => {
                     <div className="col-md-3 col-sm-6 col-md-offset-2">
                         <h5>Solutions</h5>
                         <ul className="list-unstyled footer-list">
-                           <li><a href="#">Fee Info</a></li>
-                           <li><a href="#">Start Trading</a></li>
-                           <li><a href="#">We are Hiring</a></li>
+                           <li><a href="/login">Start Trading</a></li>
                            <li><a href="#">Blog Posts</a></li>
-                           <li><a href="#">API Docs</a></li>
+                           <li><a href="/faq">FAQ</a></li>
                         </ul>
                     </div>
 
                     <div className="col-md-3 col-sm-6">
                         <h5>Useful Links</h5>
                         <ul className="list-unstyled footer-list">
-                            <li><a href="#">About Us</a></li>
                             <li><a href="#">Help &amp; Support</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/terms">Terms &amp; Conditions</a></li>
+                            
                         </ul>
                     </div>
 

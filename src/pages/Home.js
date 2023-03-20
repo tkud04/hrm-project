@@ -1,6 +1,11 @@
-import React from "react"
+import React,{useState,useEffect} from "react"
 
 const Home = () => {
+const [name,setName] = useState('')
+const [email,setEmail] = useState('')
+const [password,setPassword] = useState('')
+const [confirmPassword,setConfirmPassword] = useState('')
+
 const currencies = [
 {name: 'Ada',status: 'New',img: require('../images/ada.png')},
 {name: 'Ark',status: 'New',img: require('../images/ark.png')},
@@ -12,6 +17,16 @@ const currencies = [
 {name: 'Litecoin',status: 'Old',img: require('../images/ltc.png')},
 {name: 'Dash',status: 'Old',img: require('../images/dash.png')}
 ]
+
+const handleSignup = (e) => {
+    e.preventDefault()
+    console.log({name,email,password,confirmPassword})
+}
+
+const handleLogin = (e) => {
+    e.preventDefault()
+    console.log({email,password})
+}
 
     return (
         <>
@@ -43,12 +58,12 @@ const currencies = [
                                    </ul>
                                    <div className="tab-content tab-content-BuySell m-t-9">
                                       <div className="tab-pane active" id="tab_default_1">
-                                          <form className="intro-form" action="#" id="invite" method="POST">
+                                          <form className="intro-form" id="invite" onSubmit={handleSignup}>
                                                         <h5><i className="fa fa-user"></i> Register<span>Don't have an account? Register to start trading</span></h5>
-                                                        <input name="fname" id="fname" className="fname" placeholder="Full Name" type="text" required="required"/>
-                                                        <input type="email" placeholder="Email Address" name="email" required="required"/>
-                                                        <input type="password" placeholder="Password" className="form-control" required="required"/>
-                                                        <input type="password" placeholder="Repeat Password" className="form-control" required="required"/>
+                                                        <input name="name" value={name} onChange={(e) => {setName(e.target.value)}} id="fname" className="fname" placeholder="Full Name" type="text" required="required"/>
+                                                        <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
+                                                        <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
+                                                        <input type="password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} placeholder="Repeat Password" className="form-control" required="required"/>
                                                         <button type="submit" className="btn btn-secondary btn-block">Register</button>
 
                                                         <p>By Signing up you agree to our <a href="#">terms of conditions</a></p>
@@ -57,13 +72,14 @@ const currencies = [
 
 
                                       <div className="tab-pane" id="tab_default_2">
-                                        <form className="intro-form" action="#" id="invite-2" method="POST">
+                                        <form className="intro-form"  id="invite-2" onSubmit={handleLogin}>
                                                <h5><i className="fa fa-key"></i> Sign in<span>Have an account? Sign in & start trading</span></h5>
-                                               <input name="fname" id="fname-2" className="fname" placeholder="Full Name" type="text" required="required"/>
-                                               <input type="email" placeholder="Email Address" name="email" required="required"/>
+                                               <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
+                                               <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
+                                                       
                                                <button type="submit" className="btn btn-secondary btn-block">Sign In</button>
 
-                                               <p>By Clicking Get Trial you agree to our terms of conditions of this product</p>
+                                               <p>By Clicking Submit you agree to our terms of conditions of this product</p>
                                                </form>
                                       </div>
                                    </div>
@@ -148,17 +164,17 @@ const currencies = [
                 <div className="row text-center">
                     <div className="col-sm-12">
                         <div className="title-box text-center">
-                            <p><span className="fa fa-money color-blue"></span> Avaible Currencies to Trade</p>
+                            <p><span className="fa fa-money color-blue"></span> Available Currencies to Trade</p>
                             <h2 className="text-uppercase text-blue text-blue">Availble Currenciess</h2>
                         </div>
                     </div>
                   </div>
                   <div className="row text-center">
-                    <center>
+                  <div className="col-sm-12 text-center">
                     {currencies.map((item,index) => {
                       let {name,status,img} = item 
                       return (
-                        <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
+                        <div key={index} className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
                           <a href="#">
                            <img className="w-80" src={img} alt={name}/>
                           </a>
@@ -167,7 +183,7 @@ const currencies = [
                       )
                      }
                     )}
-                    </center>
+                   </div>
                    
                 </div>
               </div>
