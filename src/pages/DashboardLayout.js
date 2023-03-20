@@ -289,7 +289,7 @@ const DashboardLayout = () => {
 
        <section>
          <section className="main-content">
-
+          <Outlet/>
          </section>
        </section>
      </section>
