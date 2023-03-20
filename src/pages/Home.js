@@ -1,6 +1,17 @@
 import React from "react"
 
 const Home = () => {
+const currencies = [
+{name: 'Ada',status: 'New',img: require('../images/ada.png')},
+{name: 'Ark',status: 'New',img: require('../images/ark.png')},
+{name: 'Tron',status: 'New',img: require('../images/trx.png')},
+{name: 'Eos',status: 'New',img: require('../images/eos.png')},
+{name: 'Qtum',status: 'New',img: require('../images/qtum.png')},
+{name: 'Bitcoin',status: 'Top',img: require('../images/btc.png')},
+{name: 'Ethereum',status: 'Old',img: require('../images/eth.png')},
+{name: 'Litecoin',status: 'Old',img: require('../images/ltc.png')},
+{name: 'Dash',status: 'Old',img: require('../images/dash.png')}
+]
 
     return (
         <>
@@ -143,84 +154,21 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="row text-center">
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                        <a href="index-2.html">
-                        <img className="w-80" src="images/logos/ada.png" alt="ada"/>
-                        </a>
-                        <span className="label label-primary">Cardano</span><span className="label label-warning">New</span>
-                        
-                    </div>
-
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/ark.png" alt="ark"/>
-                        </a>
-                        <span className="label label-primary">Ark</span><span className="label label-warning">New</span>
-                    
-                    </div>
-
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/trx.png" alt="trx"/>
-                        </a>
-                        <span className="label label-primary">Tron</span><span className="label label-warning">New</span>
-                    </div>
-
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/eos.png" alt="eos"/>
-                        </a>
-                        <span className="label label-primary">Eos</span><span className="label label-warning">New</span>
-                    </div>
-
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/qtum.png" alt="qtum"/>
-                        </a>
-                        <span className="label label-primary">Qtum</span><span className="label label-warning">New</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/btc.png" alt="btc"/>
-                        </a>
-                        <span className="label label-primary">Bitcoin</span><span className="label label-warning">Top</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/eth.png" alt="eth"/>
-                        </a>
-                        <span className="label label-primary">Ethereum</span><span className="label label-warning">Old</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/ltc.png" alt="ltc"/>
-                        </a>
-                        <span className="label label-primary">Litecoin</span><span className="label label-warning">Old</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/dash.png" alt="dash"/>
-                        </a>
-                        <span className="label label-primary">Dash</span><span className="label label-warning">Old</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/sc.png" alt="sc"/>
-                        </a>
-                        <span className="label label-primary">Siacoin</span><span className="label label-warning">Old</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/xem.png" alt="xem"/>
-                        </a>
-                        <span className="label label-primary">Nem</span><span className="label label-warning">Old</span>
-                    </div>
-                    <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                         <a href="index-2.html">
-                        <img className="w-80" src="images/logos/rep.png" alt="rep"/>
-                        </a>
-                        <span className="label label-primary">Augur</span><span className="label label-warning">Old</span>
-                    </div>
+                    <center>
+                    {currencies.map((item,index) => {
+                      let {name,status,img} = item 
+                      return (
+                        <div className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
+                          <a href="#">
+                           <img className="w-80" src={img} alt={name}/>
+                          </a>
+                          <span className="label label-primary">{name}</span><span className="label label-warning">{status}</span>
+                        </div>
+                      )
+                     }
+                    )}
+                    </center>
+                   
                 </div>
               </div>
         </section>
