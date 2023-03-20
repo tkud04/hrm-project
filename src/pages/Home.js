@@ -1,10 +1,16 @@
 import React,{useState,useEffect} from "react"
+import { redirect, useNavigate } from "react-router-dom"
 
 const Home = () => {
-const [name,setName] = useState('')
-const [email,setEmail] = useState('')
-const [password,setPassword] = useState('')
+const [firstName,setFirstName] = useState('')
+const [lastName,setLastName] = useState('')
+const [loginEmail,setLoginEmail] = useState('')
+const [loginPassword,setLoginPassword] = useState('')
 const [confirmPassword,setConfirmPassword] = useState('')
+const [signupEmail,setSignupEmail] = useState('')
+const [signupPassword,setSignupPassword] = useState('')
+const navigate = useNavigate()
+
 
 const currencies = [
 {name: 'Ada',status: 'New',img: require('../images/ada.png')},
@@ -20,12 +26,13 @@ const currencies = [
 
 const handleSignup = (e) => {
     e.preventDefault()
-    console.log({name,email,password,confirmPassword})
+    console.log({firstName,lastName,signupEmail,signupPassword,confirmPassword})
 }
 
 const handleLogin = (e) => {
     e.preventDefault()
-    console.log({email,password})
+    console.log({loginEmail,loginPassword})
+   navigate('/dashboard')
 }
 
     return (
@@ -39,7 +46,7 @@ const handleLogin = (e) => {
                             <div className="col-md-6">
                                 <h1>Digital Currency Exchange</h1>
                                 <h4 className="normal-font-w">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit. Sed a nisl ullamcorper, tempus augue at, rutrum lacus. Duis et turpis eros.</h4>
-                                <a href="index.html" className="btn btn-custom"><i className="fa fa-line-chart"></i> Market</a>
+                                <a href="/" className="btn btn-custom"><i className="fa fa-line-chart"></i> Market</a>
                                 <a href="https://www.youtube.com/watch?v=tgEFgPk-cRY" className="btn btn-secondary popup-video"><i className="glyphicon glyphicon-play"></i> How To Trade?</a>
                             </div>
 
@@ -60,10 +67,11 @@ const handleLogin = (e) => {
                                       <div className="tab-pane active" id="tab_default_1">
                                           <form className="intro-form" id="invite" onSubmit={handleSignup}>
                                                         <h5><i className="fa fa-user"></i> Register<span>Don't have an account? Register to start trading</span></h5>
-                                                        <input name="name" value={name} onChange={(e) => {setName(e.target.value)}} id="fname" className="fname" placeholder="Full Name" type="text" required="required"/>
-                                                        <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
-                                                        <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
-                                                        <input type="password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} placeholder="Repeat Password" className="form-control" required="required"/>
+                                                        <input name="fname" value={firstName} onChange={(e) => {setFirstName(e.target.value)}} id="fname" className="fname" placeholder="First Name" type="text" required="required"/>
+                                                        <input name="lname" value={lastName} onChange={(e) => {setLastName(e.target.value)}} id="lname" className="fname" placeholder="Last Name" type="text" required="required"/>
+                                                        <input type="email" value={signupEmail} onChange={(e) => {setSignupEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
+                                                        <input type="password" value={signupPassword} onChange={(e) => {setSignupPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
+                                                        <input type="password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} placeholder="Confirm Password" className="form-control" required="required"/>
                                                         <button type="submit" className="btn btn-secondary btn-block">Register</button>
 
                                                         <p>By Signing up you agree to our <a href="#">terms of conditions</a></p>
@@ -74,8 +82,8 @@ const handleLogin = (e) => {
                                       <div className="tab-pane" id="tab_default_2">
                                         <form className="intro-form"  id="invite-2" onSubmit={handleLogin}>
                                                <h5><i className="fa fa-key"></i> Sign in<span>Have an account? Sign in & start trading</span></h5>
-                                               <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
-                                               <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
+                                               <input type="email" value={loginEmail} onChange={(e) => {setLoginEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
+                                               <input type="password" value={loginPassword} onChange={(e) => {setLoginPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
                                                        
                                                <button type="submit" className="btn btn-secondary btn-block">Sign In</button>
 
@@ -111,7 +119,7 @@ const handleLogin = (e) => {
                         stable wallets, and industry-best security practices. Whether you are new to trading and cryptocurrencies, or a veteran to both, It
                         was created for you!
                     </p>
-                    <div className="row"><a href="index-2.html" className="btn btn-primary">Get Started Now <i className="fa fa-sign-in"></i></a></div>
+                    <div className="row"><a href="#" className="btn btn-primary">Get Started Now <i className="fa fa-sign-in"></i></a></div>
                 </div>
             </div>
                {/* end row */}

@@ -46,6 +46,12 @@
 
      <script src="%PUBLIC_URL%/app/js/jquery.js"></script>
      <script src="%PUBLIC_URL%/app/js/bootstrap.js"></script>
+
+     <link rel="stylesheet" href="%PUBLIC_URL%/plugins/fontawesome/css/font-awesome.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/plugins/animo/animate%2banimo.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/plugins/csspinner/csspinner.min.css">
+      <script src="%PUBLIC_URL%/plugins/modernizr/modernizr.js"></script>
+      <script src="%PUBLIC_URL%/plugins/fastclick/fastclick.js"></script>
     <!-- styles/scripts-->
 
     <title>Trading Platform</title>
@@ -78,6 +84,77 @@
 
 
     <script src="%PUBLIC_URL%/app/js/landing.js"></script>
+
+    <script src="%PUBLIC_URL%/plugins/velocity/velocity.js"></script>
+    <script src="%PUBLIC_URL%/plugins/velocity/velocity.ui.js"></script>
+    <script src="%PUBLIC_URL%/plugins/chosen/chosen.jquery.js"></script>
+    <script src="%PUBLIC_URL%/plugins/slider/js/bootstrap-slider.js"></script>
+    <script src="%PUBLIC_URL%/plugins/filestyle/bootstrap-filestyle.js"></script>
+    <script src="%PUBLIC_URL%/plugins/animo/animo.js"></script>
+    <script src="%PUBLIC_URL%/plugins/sparklines/jquery.sparkline.js"></script>
+    <script src="%PUBLIC_URL%/plugins/slimscroll/jquery.slimscroll.js"></script>
+    <script src="%PUBLIC_URL%/plugins/datatable/media/js/jquery.dataTables.js"></script>
+    <script src="%PUBLIC_URL%/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="%PUBLIC_URL%/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrapPagination.js"></script>
+    <script src="%PUBLIC_URL%/tradify/exporting.js"></script>
+    <script src="%PUBLIC_URL%/plugins/datatable/extensions/ColVis/js/dataTables.colVis.js"></script>
+    <!--[if lt IE 8]><script src="%PUBLIC_URL%/js/excanvas.min.js"></script><![endif]-->
+    <script src="%PUBLIC_URL%/app/js/tradify.js"></script>
+    <script>
+       $(document).ready(function() {
+        let useHighCharts = true, highChartsWrapper = null
+
+try{
+ highChartsWrapper = document.querySelector('candlestickChart')
+ console.log(highChartsWrapper)
+ if(highChartsWrapper === null) useHighCharts = false
+}
+catch(e){
+  useHighCharts = false
+}
+ console.log({useHighCharts})
+ if(useHighCharts){
+  let highcharts_script = document.createElement('script');
+  highcharts_script.setAttribute('src','%PUBLIC_URL%/tradify/highcharts.js');
+
+document.head.appendChild(highcharts_script);
+ }
+          if(useHighCharts){
+          // Candlestick
+          $.getJSON('tradify/data.json', function (data) {
+            
+              // create the chart
+              Highcharts.stockChart('candlestickChart', {
+
+                chart: {
+              },
+
+
+                  rangeSelector: {
+                      selected: 1
+                  },
+
+                  series: [{
+                      type: 'candlestick',
+                      name: 'SC-BTC',
+                      data: data,
+                      dataGrouping: {
+                          units: [
+                              [
+                                  'week', // unit name
+                                  [1] // allowed multiples
+                              ], [
+                                  'month',
+                                  [1, 2, 3, 4, 6]
+                              ]
+                          ]
+                      }
+                  }]
+              });
+          });
+        }
+          });
+    </script>
 
     <script>
       jQuery(document).ready(function($) {
