@@ -366,15 +366,15 @@ const Dashboard = () => {
                      </div>
                   </div>
                   {/* Market History */}
-                     <div class="col-md-12">
-                        <div class="panel panel-default">
-                           <div class="panel-heading">Market History
-                              <a href="#" data-perform="panel-collapse" data-toggle="tooltip" title="Collapse Panel" class="pull-right">
-                              <em class="fa fa-minus"></em>
+                     <div className="col-md-12">
+                        <div className="panel panel-default">
+                           <div className="panel-heading">Market History
+                              <a href="#" data-perform="panel-collapse" data-toggle="tooltip" title="Collapse Panel" className="pull-right">
+                              <em className="fa fa-minus"></em>
                               </a>
                            </div>
-                           <div class="table-responsive">
-                              <table class="table table-bordered table-hover">
+                           <div className="table-responsive">
+                              <table className="table table-bordered table-hover">
                                  <thead>
                                     <tr>
                                        <th>Date</th>
@@ -389,7 +389,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-green">Buy <i class="fa fa-arrow-up"></i></td>
+                                       <td className="text-green">Buy <i className="fa fa-arrow-up"></i></td>
                                        <td>0.00000276</td>
                                        <td>1627.72581489</td>
                                        <td>0.00449252</td>
@@ -398,7 +398,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-danger">Sell <i class="fa fa-arrow-down"></i></td>
+                                       <td className="text-danger">Sell <i className="fa fa-arrow-down"></i></td>
                                        <td>0.00000276</td>
                                        <td>2627.72581489</td>
                                        <td>0.00749252</td>
@@ -407,7 +407,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-danger">Sell <i class="fa fa-arrow-down"></i></td>
+                                       <td className="text-danger">Sell <i className="fa fa-arrow-down"></i></td>
                                        <td>0.00000276</td>
                                        <td>2627.72581489</td>
                                        <td>0.00749252</td>
@@ -416,7 +416,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-danger">Sell <i class="fa fa-arrow-down"></i></td>
+                                       <td className="text-danger">Sell <i className="fa fa-arrow-down"></i></td>
                                        <td>0.00000276</td>
                                        <td>2627.72581489</td>
                                        <td>0.00749252</td>
@@ -425,7 +425,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-danger">Sell <i class="fa fa-arrow-down"></i></td>
+                                       <td className="text-danger">Sell <i className="fa fa-arrow-down"></i></td>
                                        <td>0.00000276</td>
                                        <td>2627.72581489</td>
                                        <td>0.00749252</td>
@@ -434,7 +434,7 @@ const Dashboard = () => {
                                        <td>
                                           02/18/2018 06:02:45 PM
                                        </td>
-                                       <td class="text-green">Buy <i class="fa fa-arrow-up"></i></td>
+                                       <td className="text-green">Buy <i className="fa fa-arrow-up"></i></td>
                                        <td>0.00000276</td>
                                        <td>1627.72581489</td>
                                        <td>0.00449252</td>
@@ -442,28 +442,28 @@ const Dashboard = () => {
                                  </tbody>
                               </table>
                            </div>
-                           <div class="panel-footer">
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <div class="float-right">
-                                       <ul class="pagination pagination-sm pagi-margin">
-                                          <li class="disabled"><a href="javascript:void(0);">First</a></li>
+                           <div className="panel-footer">
+                              <div className="row">
+                                 <div className="col-lg-12">
+                                    <div className="float-right">
+                                       <ul className="pagination pagination-sm pagi-margin">
+                                          <li className="disabled"><a href="#">First</a></li>
                                        </ul>
-                                       <ul class="pagination pagination-sm pagi-margin">
-                                          <li class="disabled"><a href="javascript:void(0);">Prev</a></li>
+                                       <ul className="pagination pagination-sm pagi-margin">
+                                          <li className="disabled"><a href="#">Prev</a></li>
                                        </ul>
-                                       <ul class="pagination pagination-sm pagi-margin">
-                                          <li class="active"><a href="javascript:void(0);">1</a></li>
-                                          <li><a href="javascript:void(0);">2</a></li>
-                                          <li><a href="javascript:void(0);">3</a></li>
-                                          <li><a href="javascript:void(0);">4</a></li>
-                                          <li><a href="javascript:void(0);">5</a></li>
+                                       <ul className="pagination pagination-sm pagi-margin">
+                                          <li className="active"><a href="#">1</a></li>
+                                          <li><a href="#">2</a></li>
+                                          <li><a href="#">3</a></li>
+                                          <li><a href="#">4</a></li>
+                                          <li><a href="#">5</a></li>
                                        </ul>
-                                       <ul class="pagination pagination-sm pagi-margin">
-                                          <li><a href="javascript:void(0);">Next</a></li>
+                                       <ul className="pagination pagination-sm pagi-margin">
+                                          <li><a href="#">Next</a></li>
                                        </ul>
-                                       <ul class="pagination pagination-sm pagi-margin">
-                                          <li><a href="javascript:void(0);">Last</a></li>
+                                       <ul className="pagination pagination-sm pagi-margin">
+                                          <li><a href="#">Last</a></li>
                                        </ul>
                                     </div>
                                  </div>
