@@ -1,11 +1,13 @@
 import React, {useState,useEffect} from "react"
 import { Outlet } from "react-router-dom"
+import logo from '../img/icon-1.png'
 
 const Layout = () => {
    const [isSticky,setIsSticky] = useState(false)
-   const [navBarTop,setNavBarTop] = useState(null)
+   const [spinnerVisible,setSpinnerVisible] = useState(true)
 
-   const checkSticky = (e) => {
+
+   /*const checkSticky = (e) => {
     const scrollTop = window.scrollY
     
     if(scrollTop > navBarTop - 10){
@@ -15,131 +17,157 @@ const Layout = () => {
       setIsSticky(false)
     }
    }
+   */
+    // Spinner
+    const spinner = function () {
+        setTimeout(function () {
+            setSpinnerVisible(false)
+            /*if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
+            }*/
+        }, 1);
+    }
+    
 
    useEffect(() => {
-    const navBarPosition = document.querySelector('#undefined-sticky-wrapper').getBoundingClientRect()
-    setNavBarTop(navBarPosition.top)
-   },[])
-   
-   useEffect(() => {
-   
-    window.addEventListener('scroll',checkSticky)
+     spinner()
+   })
 
-    return () => {window.removeEventListener('scroll',checkSticky)}
-   },[navBarTop])
+
 
    const NavBar = () => (
-    <div className="container">
-    {/* Navbar-header */}
-    <div className="navbar-header">
-        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <i className="ti-menu"></i>
-        </button>
-        {/* LOGO */}
-        <a className="navbar-brand logo" href="/">
-            <i className="fa fa-bitcoin"></i> HRM DEMO
+    <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
+        <a href="/" className="navbar-brand d-flex align-items-center">
+            <h2 className="m-0 text-primary">
+                <img className="img-fluid me-2" src={logo} alt=""style={{width: 45}}/>
+                HRM Project
+            </h2>
         </a>
-    </div>
-    {/* end navbar-header */}
+        <button type="button" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+            <div className="navbar-nav ms-auto py-4 py-lg-0">
+                <a href="/" className="nav-item nav-link active">Home</a>
+                <a href="/about" className="nav-item nav-link">About</a>
+                {/*<div className="nav-item dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div className="dropdown-menu shadow-sm m-0">
+                        <a href="/feature" className="dropdown-item">Feature</a>
+                        <a href="/token" className="dropdown-item">Token Sale</a>
+                        <a href="/faq" className="dropdown-item">FAQs</a>
+                        <a href="/404" className="dropdown-item">404 Page</a>
+                    </div>
+                   </div>*/}
 
-    {/* menu */}
-    <div className="navbar-collapse collapse" id="data-scroll">
-        <ul className="nav navbar-nav navbar-right">
-             <li className="active">
-                <a href="/home">Home</a>
-            </li>
-        
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-           
-            <li>
-                <a href="/blog">Blog</a>
-            </li>
-           
-        </ul>
-    </div>
-    {/*/Menu */}
-    {/* end container */}
-</div>
+                <a href="/contact" className="nav-item nav-link">Contact</a>
+            </div>
+            <div className="h-100 d-lg-inline-flex align-items-center d-none">
+                <a className="btn btn-square rounded-circle bg-light text-primary me-2" href="#"><i
+                        className="fab fa-facebook-f"></i></a>
+                <a className="btn btn-square rounded-circle bg-light text-primary me-2" href="#"><i
+                        className="fab fa-twitter"></i></a>
+                <a className="btn btn-square rounded-circle bg-light text-primary me-0" href="#"><i
+                        className="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </nav>
    )
 
     return (
      <div>
-      
-      {/* Navbar */}
-      {isSticky ? (
-         <div id="undefined-sticky-wrapper" className="sticky-wrapper is-sticky" style={{height: 92}}>
-         <div className="navbar navbar-custom sticky" role="navigation" style={{position: 'fixed', top: 0}}>
-           <NavBar/>
+       {spinnerVisible && (
+        <>
+        {/* Spinner Start */}
+        <div id="spinner"
+        className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+         >
+         <div className="spinner-grow text-primary" role="status"></div>
          </div>
-       </div>
-      ) : (
-        <div id="undefined-sticky-wrapper" className="sticky-wrapper" style={{height: 92}}>
-        <div className="navbar navbar-custom sticky" role="navigation">
-          <NavBar/>
-        </div>
-      </div>
-      )}
+         {/* Spinner End */}
+         </>
+       )}
+      {/* Navbar */}
+
+      <NavBar/>
      
 
       <Outlet/>
 
       {/* FOOTER */}
-        <footer className="bg-dark footer">
+      <div className="container-fluid bg-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div className="container py-5">
+            <div className="row g-5">
+                <div className="col-md-6">
+                    <h1 className="text-primary mb-4"><img className="img-fluid me-2" src={logo} alt=""
+                            style={{width: 45}}/>HRM Project</h1>
+                    <span>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
+                        stet lorem sit clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum
+                        et lorem et sit.</span>
+                </div>
+                <div className="col-md-6">
+                    <h5 className="mb-4">Newsletter</h5>
+                    <p>Subscribe to our Newsletter for notifications and updates about profitable coins</p>
+                    <div className="position-relative">
+                        <input className="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
+                            placeholder="Your email"/>
+                        <button type="button"
+                            className="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <h5 className="mb-4">Get In Touch</h5>
+                    <p><i className="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i className="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p><i className="fa fa-envelope me-3"></i>info@hrmproject.com</p>
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <h5 className="mb-4">Our Services</h5>
+                    <a className="btn btn-link" href="#">Currency Wallet</a>
+                    <a className="btn btn-link" href="#">Currency Transaction</a>
+                    <a className="btn btn-link" href="#">Bitcoin Investment</a>
+                    <a className="btn btn-link" href="#">Token Sale</a>
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <h5 className="mb-4">Quick Links</h5>
+                    <a className="btn btn-link" href="#">About Us</a>
+                    <a className="btn btn-link" href="#">Contact Us</a>
+                    <a className="btn btn-link" href="#">Our Services</a>
+                    <a className="btn btn-link" href="#">Terms & Condition</a>
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <h5 className="mb-4">Follow Us</h5>
+                    <div className="d-flex">
+                        <a className="btn btn-square rounded-circle me-1" href="#"><i className="fab fa-twitter"></i></a>
+                        <a className="btn btn-square rounded-circle me-1" href="#"><i className="fab fa-facebook-f"></i></a>
+                        <a className="btn btn-square rounded-circle me-1" href="#"><i className="fab fa-youtube"></i></a>
+                        <a className="btn btn-square rounded-circle me-1" href="#"><i className="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="container-fluid copyright">
             <div className="container">
                 <div className="row">
-
-                    <div className="col-md-4 col-sm-12">
-                        <h4 className="logo"><i className="fa fa-bitcoin"></i> HRM DEMO</h4>
-                        <p>This is a sample long text just to fill space. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
-
-                        <ul className="list-inline social">
-                            <li>
-                                <a href="#" className="bg-twitter"><i className="ti-twitter-alt"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" className="bg-dribbble"><i className="ti-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" className="bg-linkedin"><i className="ti-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" className="bg-googleplus"><i className="ti-google"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" className="bg-facebook"><i className="ti-facebook"></i></a>
-                            </li>
-                        </ul>
+                    <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="#">HRM Project</a>, All Rights Reserved.
                     </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    {/* Footer End */}
 
-                    <div className="col-md-3 col-sm-6 col-md-offset-2">
-                        <h5>Solutions</h5>
-                        <ul className="list-unstyled footer-list">
-                           <li><a href="/login">Start Trading</a></li>
-                           <li><a href="#">Blog Posts</a></li>
-                           <li><a href="/faq">FAQ</a></li>
-                        </ul>
-                    </div>
 
-                    <div className="col-md-3 col-sm-6">
-                        <h5>Useful Links</h5>
-                        <ul className="list-unstyled footer-list">
-                            <li><a href="#">Help &amp; Support</a></li>
-                            <li><a href="/privacy-policy">Privacy Policy</a></li>
-                            <li><a href="/terms">Terms &amp; Conditions</a></li>
-                            
-                        </ul>
-                    </div>
-
-                </div> {/* end row */}
-
-              
-            </div> {/* end container */}
-        </footer> 
-        {/* end FOOTER */}
+    {/* Back to Top */}
+    <a href="#" className="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            className="bi bi-arrow-up"></i></a> 
+      {/* end FOOTER */}
 
      </div>
+
+     
     )
 }
 

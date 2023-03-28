@@ -1,5 +1,16 @@
 import React,{useState,useEffect} from "react"
 import { redirect, useNavigate } from "react-router-dom"
+import hero from '../img/hero-1.png'
+import about from '../img/about.png'
+import icon9 from '../img/icon-9.png'
+import icon10 from '../img/icon-10.png'
+import icon2 from '../img/icon-2.png'
+import icon7 from '../img/icon-7.png'
+import icon6 from '../img/icon-6.png'
+import icon5 from '../img/icon-5.png'
+import icon4 from '../img/icon-4.png'
+import icon3 from '../img/icon-3.png'
+import icon8 from '../img/icon-8.png'
 
 const Home = () => {
 const [firstName,setFirstName] = useState('')
@@ -24,6 +35,48 @@ const currencies = [
 {name: 'Dash',status: 'Old',img: require('../images/dash.png')}
 ]
 
+const features = [
+    {icon: icon7, title: 'Easy To Start', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon6, title: 'Safe & Secure', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon5, title: 'Affordable Plans', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon4, title: 'Secure Storage', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon3, title: 'Protected By Insurance', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon8, title: '24/7 Support', description: 'Just a long text to fill the space and see how the UI looks'},
+]
+
+const services = [
+    {icon: icon7, dataDelay: '0.1s', title: 'Currency Wallet', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon3, dataDelay: '0.3s', title: 'Currency Transaction', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon9, dataDelay: '0.5s', title: 'Bitcoin Investment', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon5, dataDelay: '0.1s', title: 'Currency Exchange', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon2, dataDelay: '0.3s', title: 'Bitcoin Escrow', description: 'Just a long text to fill the space and see how the UI looks'},
+    {icon: icon8, dataDelay: '0.5s', title: 'Token Sale', description: 'Just a long text to fill the space and see how the UI looks'},
+]
+
+const roadmap = [
+    {title: 'Fund your account', description: 'Add funds to your crypto account to start trading crypto. You can add funds with a variety of payment methods.'},
+    {title: 'Verify your identity', description: 'Complete the identity verification process to secure your account and transactions.'},
+    {title: 'Start trading', description: 'You\'re good to go! Buy/sell crypto, set up recurring buys for your investments, and discover what Binance has to offer.'}
+]
+
+const tokenSales = [
+    {title: 'BTC', icon: require('../img/coins/btc.png'), description:'0.71% - 117.5%',status: 'increase'},
+    {title: 'USDT', icon: require('../img/coins/usdt.png'), description:'1.74% - 203.34%',status: 'decrease'},
+    {title: 'ETH', icon: require('../img/coins/eth.png'), description:'0.81% - 140.22%',status: 'increase'},
+    {title: 'DOT', icon: require('../img/coins/dot.png'), description:'1.45% - 87.11%',status: 'decrease'},
+    {title: 'ADA', icon: require('../img/coins/ada.png'), description:'1.25% - 78.09%',status: 'decrease'},
+    {title: 'SHIB', icon: require('../img/coins/shib.png'), description:'0.30% - 3.54%',status: 'decrease'},
+]
+
+const faqs = [
+    {question: 'How do I get started?',answer: 'This is a long text to fill up space and render the UI with dummy data in order to see how it looks'},
+    {question: 'Is trading coins legal in my country?',answer: 'This is a long text to fill up space and render the UI with dummy data in order to see how it looks'},
+    {question: 'How do I withdraw my earnings?',answer: 'This is a long text to fill up space and render the UI with dummy data in order to see how it looks'},
+    {question: 'Is this site trusted?',answer: 'This is a long text to fill up space and render the UI with dummy data in order to see how it looks'},
+    {question: 'How do I deposit funds?',answer: 'This is a long text to fill up space and render the UI with dummy data in order to see how it looks'},
+]
+
+
 const handleSignup = (e) => {
     e.preventDefault()
     console.log({firstName,lastName,signupEmail,signupPassword,confirmPassword})
@@ -35,231 +88,228 @@ const handleLogin = (e) => {
    navigate('/dashboard')
 }
 
+const Banner = () => {
+
     return (
-        <>
-        <section className="home bg-image home-small" id="home">
-
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="home-wrapper home-intro row vertical-content">
-                            <div className="col-md-6">
-                                <h1>Digital Currency Exchange</h1>
-                                <h4 className="normal-font-w">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit. Sed a nisl ullamcorper, tempus augue at, rutrum lacus. Duis et turpis eros.</h4>
-                                <a href="/" className="btn btn-custom"><i className="fa fa-line-chart"></i> Market</a>
-                                <a href="https://www.youtube.com/watch?v=tgEFgPk-cRY" className="btn btn-secondary popup-video"><i className="glyphicon glyphicon-play"></i> How To Trade?</a>
-                            </div>
-
-                            <div className="col-md-5 col-sm-10 m-t-20">
-                                <div className="tabbable-panel">
-                                <div className="tabbable-line">
-                                   <ul className="nav nav-tabs border-bottom-none">
-                                      <li className="active btn btn-primary text-white">
-                                         <a className="normal-font-w border-none" href="#tab_default_1" data-toggle="tab"><i className="fa fa-user"></i>
-                                         Register </a>
-                                      </li>
-                                      <li className="btn btn-secondary text-white">
-                                         <a className="normal-font-w border-none" href="#tab_default_2" data-toggle="tab"><i className="fa fa-key"></i>
-                                         Sign In </a>
-                                      </li>
-                                   </ul>
-                                   <div className="tab-content tab-content-BuySell m-t-9">
-                                      <div className="tab-pane active" id="tab_default_1">
-                                          <form className="intro-form" id="invite" onSubmit={handleSignup}>
-                                                        <h5><i className="fa fa-user"></i> Register<span>Don't have an account? Register to start trading</span></h5>
-                                                        <input name="fname" value={firstName} onChange={(e) => {setFirstName(e.target.value)}} id="fname" className="fname" placeholder="First Name" type="text" required="required"/>
-                                                        <input name="lname" value={lastName} onChange={(e) => {setLastName(e.target.value)}} id="lname" className="fname" placeholder="Last Name" type="text" required="required"/>
-                                                        <input type="email" value={signupEmail} onChange={(e) => {setSignupEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
-                                                        <input type="password" value={signupPassword} onChange={(e) => {setSignupPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
-                                                        <input type="password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} placeholder="Confirm Password" className="form-control" required="required"/>
-                                                        <button type="submit" className="btn btn-secondary btn-block">Register</button>
-
-                                                        <p>By Signing up you agree to our <a href="#">terms of conditions</a></p>
-                                                    </form>
-                                      </div>
-
-
-                                      <div className="tab-pane" id="tab_default_2">
-                                        <form className="intro-form"  id="invite-2" onSubmit={handleLogin}>
-                                               <h5><i className="fa fa-key"></i> Sign in<span>Have an account? Sign in & start trading</span></h5>
-                                               <input type="email" value={loginEmail} onChange={(e) => {setLoginEmail(e.target.value)}} placeholder="Email Address" name="email" required="required"/>
-                                               <input type="password" value={loginPassword} onChange={(e) => {setLoginPassword(e.target.value)}} placeholder="Password" className="form-control" required="required"/>
-                                                       
-                                               <button type="submit" className="btn btn-secondary btn-block">Sign In</button>
-
-                                               <p>By Clicking Submit you agree to our terms of conditions of this product</p>
-                                               </form>
-                                      </div>
-                                   </div>
-                                </div>
-                             </div>
-                            </div>
-                        </div>
-                    </div>{/* end col */}
-                </div>{/* end row */}
-            </div>
-           {/* end container */}
-        </section>
-        <section className="section bg-lightgray" id="About">
-            <div className="container">
-
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className="title-box text-center">
-                            
-                            <p><span className="fa fa-bar-chart color-blue"></span> What We Do</p>
-                            <h2 className="text-uppercase text-blue text-blue">Trade Confidently</h2>
-                        </div>
-                    </div>
-                <div className="col-lg-8 col-lg-offset-2 text-center">
-                    <hr className="light"/>
-                    <p className="text-faded">
-                        We provide individuals and businesses a world class experience to buy and sell cutting-edge cryptocurrencies
-                        and digital tokens. Crypto is the go-to spot for traders who demand lightning fast trade execution,
-                        stable wallets, and industry-best security practices. Whether you are new to trading and cryptocurrencies, or a veteran to both, It
-                        was created for you!
-                    </p>
-                    <div className="row"><a href="#" className="btn btn-primary">Get Started Now <i className="fa fa-sign-in"></i></a></div>
+     <div className="container-fluid hero-header bg-light py-5 mb-5">
+        <div className="container py-5">
+            <div className="row g-5 align-items-center">
+                <div className="col-lg-6">
+                    <h1 className="display-4 mb-3 animated slideInDown">Make Better Life With Trusted CryptoCoin</h1>
+                    <p className="animated slideInDown">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
+                        diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
+                        magna dolore erat amet</p>
+                    <a href="" className="btn btn-primary py-3 px-4 animated slideInDown">Explore More</a>
+                </div>
+                <div className="col-lg-6 animated fadeIn">
+                    <img className="img-fluid animated pulse infinite" style={{animationDuration: 3}} src={hero}
+                        alt=""/>
                 </div>
             </div>
-               {/* end row */}
+        </div>
+    </div>
 
-            </div>{/* end container */}
-        </section>
-       {/* end SERVICES */}
+    )
+}
 
-       {/* FEATURES */}
-        <section className="section">
-            <div className="container">
-                <div className="row">
-                <div className="col-md-3 col-sm-6 col-xs-12 text-center">
-                    <i className="fa fa-money fa-3x color-blue"></i>
-                   <h4 className="title">Low Fee</h4>
-                   <p>0% maker fee and 0.1% taker fee makes us one of the most competitive exchanges on the market</p>
+    return (
+      <>
+       <Banner/>
+
+       {/* About */}
+       <div className="container-xxl py-5">
+        <div className="container">
+            <div className="row g-5 align-items-center">
+                <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <img className="img-fluid" src={about} alt=""/>
                 </div>
-
-                <div className="col-md-3 col-sm-6 col-xs-12 text-center">
-                    <i className="fa fa-lock fa-3x color-blue"></i>
-                   <h4 className="title">Security</h4>
-                   <p>The vast majority of digital assets are stored securely in offline storages</p>
-                </div>
-
-
-                <div className="col-md-3 col-sm-6 col-xs-12 text-center">
-                    <i className="fa fa-users fa-3x color-blue"></i>
-                   <h4 className="title">Experienced Team</h4>
-                   <p>Our experienced team helps us build the best product and deliver first class service to our clients</p>
-                </div>
-
-                <div className="col-md-3 col-sm-6 col-xs-12 text-center">
-                    <i className="fa fa-support fa-3x color-blue"></i>
-                   <h4 className="title">24/7 Support</h4>
-                   <p>Our multilingual 24/7 support allows us to keep in touch with customers in all time zones and regions</p>
-                </div>
-
-
-                </div>
-               {/* end row */}
-
-            </div>{/* end container */}
-        </section>
-       {/* end FEATURES */}
-
-
-       {/* Currencies */}
-        <section className="section bg-lightgray" id="Currencies">
-            <div className="container">
-                <div className="row text-center">
-                    <div className="col-sm-12">
-                        <div className="title-box text-center">
-                            <p><span className="fa fa-money color-blue"></span> Available Currencies to Trade</p>
-                            <h2 className="text-uppercase text-blue text-blue">Availble Currenciess</h2>
+                <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div className="h-100">
+                        <h1 className="display-6">About Us</h1>
+                        <p className="text-primary fs-5 mb-4">The Most Trusted Cryptocurrency Platform</p>
+                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.
+                            Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                        </p>
+                        <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
+                            diam et eos. Clita erat ipsum et lorem et sit.</p>
+                        <div className="d-flex align-items-center mb-2">
+                            <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Tempor erat elitr rebum at clita</span>
                         </div>
+                        <div className="d-flex align-items-center mb-2">
+                            <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Tempor erat elitr rebum at clita</span>
+                        </div>
+                        <div className="d-flex align-items-center mb-4">
+                            <i className="fa fa-check bg-light text-primary btn-sm-square rounded-circle me-3 fw-bold"></i>
+                            <span>Tempor erat elitr rebum at clita</span>
+                        </div>
+                        <a className="btn btn-primary py-3 px-4" href="">Read More</a>
                     </div>
-                  </div>
-                  <div className="row text-center">
-                  <div className="col-sm-12 text-center">
-                    {currencies.map((item,index) => {
-                      let {name,status,img} = item 
-                      return (
-                        <div key={index} className="col-md-1 col-sm-2 col-xs-4 m-t-9 text-center">
-                          <a href="#">
-                           <img className="w-80" src={img} alt={name}/>
-                          </a>
-                          <span className="label label-primary">{name}</span><span className="label label-warning">{status}</span>
-                        </div>
-                      )
-                     }
-                    )}
-                   </div>
-                   
                 </div>
-              </div>
-        </section>
-       {/* end Currencies */}
+            </div>
+        </div>
+    </div>
 
+    {/*Facts*/}
+    <div className="container-xxl bg-light py-5 my-5">
+        <div className="container py-5">
+            <div className="row g-5">
+                <div className="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <img className="img-fluid mb-4" src={icon9} alt=""/>
+                    <h1 className="display-4" data-toggle="counter-up">123456</h1>
+                    <p className="fs-5 text-primary mb-0">Today Transactions</p>
+                </div>
+                <div className="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <img className="img-fluid mb-4" src={icon10} alt=""/>
+                    <h1 className="display-4" data-toggle="counter-up">123456</h1>
+                    <p className="fs-5 text-primary mb-0">Monthly Transactions</p>
+                </div>
+                <div className="col-lg-4 col-md-6 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <img className="img-fluid mb-4" src={icon2} alt=""/>
+                    <h1 className="display-4" data-toggle="counter-up">123456</h1>
+                    <p className="fs-5 text-primary mb-0">Total Transactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-
-       {/* BLOG */}
-        <section className="section bg-lightgray" id="blog">
-            <div className="container">
-
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className="title-box text-center">
-                            
-                            <p><span className="fa fa-bullhorn color-blue"></span>From our Blog</p>
-                            <h2 className="text-uppercase text-blue">News & Stories</h2>
+    {/*Features*/}
+    <div className="container-xxl py-5">
+        <div className="container">
+            <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
+                <h1 className="display-6">Why Us!</h1>
+                <p className="text-primary fs-5 mb-5">The Best In The crypto Industry</p>
+            </div>
+            <div className="row g-5">
+             {features.map((f,index) => {
+                return (
+                    <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div className="d-flex align-items-start">
+                        <img className="img-fluid flex-shrink-0" src={f.icon} alt=""/>
+                        <div className="ps-4">
+                            <h5 className="mb-3">{f.title}</h5>
+                            <span>{f.description}</span>
                         </div>
                     </div>
                 </div>
-               {/* end row */}
+                )
+               }
+             )}
+            </div>
+        </div>
+    </div>
 
-                <div className="row">
-                    <div className="col-sm-4">
-                        <div className="blog-box">
-                            <div className="blog-box-content">
-                                <h4 className="blog-grid-title-md"><a href="#">Architecto beatae vitae dicta sunt explicabo</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
-                            </div>
-                            <div className="blog-box-footer">
-                                <a href="#" className="btn btn-sm btn-custom"> Read more <p className="label label-warning">26 Feb 2018</p></a>
-                            </div>
+    {/*Services*/}
+    <div className="container-xxl bg-light py-5 my-5">
+    <div className="container py-5">
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
+            <h1 className="display-6">Services</h1>
+            <p className="text-primary fs-5 mb-5">Buy, Sell And Exchange Cryptocurrency</p>
+        </div>
+        <div className="row g-4">
+          {services.map((s,index) => {
+            return (
+                <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={s.dataDelay}>
+                <div className="service-item bg-white p-5">
+                    <img className="img-fluid mb-4" src={s.icon} alt=""/>
+                    <h5 className="mb-3">{s.title}</h5>
+                    <p>{s.description}</p>
+                    <a href="#">Read More <i className="fa fa-arrow-right ms-2"></i></a>
+                </div>
+                </div>
+            )
+           }
+          )}
+        </div>
+    </div>
+    </div>
+
+    {/*Roadmap */}
+    <div className="container-xxl py-5">
+    <div className="container">
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
+            <h1 className="display-6">Build your crypto portfolio</h1>
+            <p className="text-primary fs-5 mb-5">We Translate Your Dream Into Reality</p>
+        </div>
+        <div className="roadmap-carousel wow fadeInUp" data-wow-delay="0.1s">
+          {roadmap.map((r,index) => {
+            return (
+                <div key={index} className="roadmap-item">
+                <div className="roadmap-point"><span></span></div>
+                <h5>{r.title}</h5>
+                <span>{r.description}</span>
+            </div>
+            )
+          }
+          )}
+        </div>
+    </div>
+    </div>
+
+    {/*Token Sale */}
+    <div className="container-xxl bg-light py-5 my-5">
+    <div className="container py-5">
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
+            <h1 className="display-6">Earn Today</h1>
+            <p className="text-primary fs-5 mb-5">Simple & Secure. Search popular coins and start earning.</p>
+        </div>
+        <div className="row g-3">
+          {tokenSales.map((t,index) => {
+            let statusColor = t.status === 'increase' ? 'text-primary' : 'text-danger'
+            return (
+                <div key={index} className="col-6 col-md-3 wow fadeIn" data-wow-delay="0.1s">
+                <div className="bg-white text-center p-3">
+                    <img src={t.icon} alt=""/>
+                    <h1 className="mb-0">
+                        
+                        {t.title}
+                    </h1>
+                    <span className={`${statusColor} fs-5`}>{t.description}</span>
+                </div>
+            </div>
+            )
+          })
+          }
+        </div>
+    </div>
+    </div>
+
+    {/*FAQ */}
+    <div className="container-xxl py-5">
+    <div className="container">
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
+            <h1 className="display-6">FAQs</h1>
+            <p className="text-primary fs-5 mb-5">Frequently Asked Questions</p>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-lg-10">
+            <div className="accordion" id="accordionExample">
+              {faqs.map((item,index) => {
+                return (
+                    <div key={index} className="accordion-item wow fadeInUp" data-wow-delay={item.dataDelay}>
+                    <h2 className="accordion-header" id={`heading-${index}`}>
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target={`#collapse-${index}`} aria-expanded="true" aria-controls={`#collapse-${index}`}>
+                           {item.question}
+                        </button>
+                    </h2>
+                    <div id={`#collapse-${index}`} className="accordion-collapse collapse show" aria-labelledby={`#heading-${index}`}
+                        data-bs-parent="#accordionExample">
+                        <div className="accordion-body">
+                            {item.answer}
                         </div>
                     </div>
-
-                    <div className="col-sm-4">
-                        <div className="blog-box">
-                            <div className="blog-box-content">
-                                <h4 className="blog-grid-title-md"><a href="#">Architecto beatae vitae dicta sunt explicabo</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
-                            </div>
-                            <div className="blog-box-footer">
-                                <a href="#" className="btn btn-sm btn-custom"> Read more <p className="label label-warning">26 Feb 2018</p></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-4">
-                        <div className="blog-box">
-                            <div className="blog-box-content">
-                                <h4 className="blog-grid-title-md"><a href="#">Architecto beatae vitae dicta sunt explicabo</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel sapien et lacus tempus varius. In finibus lorem vel.</p>
-                            </div>
-                            <div className="blog-box-footer">
-                                <a href="#" className="btn btn-sm btn-custom"> Read more <p className="label label-warning">26 Feb 2018</p></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>{/* end row */}
-
-            </div>{/* end container */}
-        </section>
-       {/* end BLOG */}
-       </>
+                </div>
+                )
+              }
+              )}
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    </>
     )
 }
 
