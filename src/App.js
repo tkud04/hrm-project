@@ -11,6 +11,8 @@ import {
 import {BrowserRouter as Router} from 'react-router-dom'
 import Layout from "./pages/Layout"
 import Home from "./pages/Home"
+import About from './pages/About'
+import ContactUs from "./pages/ContactUs"
 import './App.css'
 import DashboardLayout from "./pages/DashboardLayout"
 import Dashboard from "./pages/Dashboard"
@@ -22,6 +24,8 @@ return (
     <Routes>
        <Route element={<Layout/>}>
         <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<ContactUs/>}/>
        </Route>  
 
        <Route element={<DashboardLayout/>}>
