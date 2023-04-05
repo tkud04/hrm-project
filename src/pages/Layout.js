@@ -1,10 +1,12 @@
 import React, {useState,useEffect} from "react"
 import { Outlet } from "react-router-dom"
 import logo from '../img/icon-1.png'
+import { useLoginState } from "../contexts/loginStore"
 
 const Layout = () => {
    const [isSticky,setIsSticky] = useState(false)
    const [spinnerVisible,setSpinnerVisible] = useState(true)
+   const loginState = useLoginState()
 
 
    /*const checkSticky = (e) => {
@@ -50,15 +52,23 @@ const Layout = () => {
             <div className="navbar-nav ms-auto py-4 py-lg-0">
                 <a href="/" className="nav-item nav-link active">Home</a>
                 <a href="/about" className="nav-item nav-link">About</a>
-                {/*<div className="nav-item dropdown">
-                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                {loginState?.email.length < 1 ? (
+                    <div className="nav-item dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Login</a>
                     <div className="dropdown-menu shadow-sm m-0">
-                        <a href="/feature" className="dropdown-item">Feature</a>
-                        <a href="/token" className="dropdown-item">Token Sale</a>
-                        <a href="/faq" className="dropdown-item">FAQs</a>
-                        <a href="/404" className="dropdown-item">404 Page</a>
+                        <a href="/login" className="dropdown-item">Login</a>
+                        <a href="/signup" className="dropdown-item">Signup</a>
                     </div>
-                   </div>*/}
+                   </div>
+                ) : (
+                    <div className="nav-item dropdown">
+                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hi, Dave</a>
+                     <div className="dropdown-menu shadow-sm m-0">
+                        <a href="/dashboard" className="dropdown-item">Dashboard</a>
+                        <a href="/signup" className="dropdown-item">Sign out</a>
+                     </div>
+                   </div>
+                )}
 
                 <a href="/contact" className="nav-item nav-link">Contact</a>
             </div>

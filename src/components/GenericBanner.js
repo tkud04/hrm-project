@@ -11,7 +11,7 @@ const GenericBanner = ({title}) => {
                     <h1 className="display-4 mb-3 animated slideInDown">{title}</h1>
                     <nav aria-label="breadcrumb animated slideInDown">
                         <ol className="breadcrumb mb-0">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
+                            <li className="breadcrumb-item"><a href="/">Home</a></li>
                             <li className="breadcrumb-item active" aria-current="page">{title}</li>
                         </ol>
                     </nav>

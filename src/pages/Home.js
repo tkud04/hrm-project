@@ -11,6 +11,7 @@ import icon5 from '../img/icon-5.png'
 import icon4 from '../img/icon-4.png'
 import icon3 from '../img/icon-3.png'
 import icon8 from '../img/icon-8.png'
+import { useLoginState } from "../contexts/loginStore"
 
 const Home = () => {
 const [firstName,setFirstName] = useState('')
@@ -20,7 +21,7 @@ const [loginPassword,setLoginPassword] = useState('')
 const [confirmPassword,setConfirmPassword] = useState('')
 const [signupEmail,setSignupEmail] = useState('')
 const [signupPassword,setSignupPassword] = useState('')
-const navigate = useNavigate()
+const navigate = useNavigate(), loginState = useLoginState()
 
 
 const currencies = [
@@ -111,6 +112,10 @@ const Banner = () => {
 
     )
 }
+
+useEffect(() => {
+ console.log({loginState})
+},[])
 
     return (
       <>

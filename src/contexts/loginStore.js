@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { storeProfileData } from '../common/utils'
 
 const initialState = {
     firstName: "",
@@ -38,12 +39,15 @@ function LoginProvider({children}) {
     const [state, dispatch] = React.useReducer(reducer, initialState)
   
     React.useEffect(() => {
-      SharedPref.storeProfileData(state)
+      storeProfileData(state)
     },[state])
   
     // actions
     const LoginDispatch = React.useMemo(
       () => ({
+        login: async (credentials) => {
+          console.log({credentials})
+        }
       }),[state]
     )
 
