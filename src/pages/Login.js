@@ -3,8 +3,10 @@ import { redirect, useNavigate } from "react-router-dom"
 import GenericBanner from "../components/GenericBanner"
 import {ReactComponent as AppleLogo} from '../img/logos/apple.svg'
 import {ReactComponent as GoogleLogo} from '../img/logos/google.svg'
+import loadingImage from '../img/loading.gif'
 
 const Login = () => {
+const [loading,setLoading] = useState(false)
 const navigate = useNavigate()
 
 const loginWithApple = (e) => {
@@ -20,6 +22,7 @@ const loginWithGoogle = (e) => {
 const login = (e) => {
     e.preventDefault()
     console.log('logging in normally')
+    setLoading(true)
 }
 
     return (
@@ -63,13 +66,16 @@ const login = (e) => {
                         <div className="row g-3">
                             <div className="col-md-12">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="name" placeholder="Your Name"/>
-                                    <label htmlFor="name">Your Name</label>
+                                    <input type="text" className="form-control" id="name" placeholder="Email "/>
+                                    <label htmlFor="name">Your Email address</label>
                                 </div>
                             </div>
                             
                             <div className="col-12">
-                                <button className="btn btn-primary py-3 px-4 form-control" onClick={login}>Next</button>
+                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} onClick={login}>
+                                    Next
+                                    {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
+                                    </button>
                             </div>
 
                             <div className="col-md-12">
