@@ -20,6 +20,7 @@ const [display2FA,setDisplay2FA] = useState(false)
 const [otp,setOtp] = useState('')
 const [otpValidation,setOtpValidation] = useState(false)
 const [otpValidationMessage,setOtpValidationMessage] = useState('')
+const [emailDisplay,setEmailDisplay] = useState('')
 
 const mailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -79,13 +80,13 @@ const next = (e) => {
     if(password.length < 1 || password.length < 7){
         let ret = ''
 
-     if(password.length < 1){
-       ret = 'This field is required'
-     }
-
      if(password.length < 7){
         ret = 'Password must be at least 7 characters'
      }
+
+     if(password.length < 1){
+        ret = 'This field is required'
+      }
 
      setPasswordValidation(true)
      setPasswordValidationMessage(ret)
@@ -93,9 +94,12 @@ const next = (e) => {
     }
     else{
         //validation successful
-        console.log({email,password})
-        setLoading(false)
-        setDisplay2FA(true)
+       
+        setTimeout(() => {
+            console.log({email,password})
+            setLoading(false)
+            setDisplay2FA(true)
+          },1000)
     }
 }
 
@@ -126,9 +130,13 @@ const submit2FA = (e) => {
         console.log('submitting 2fa otp code: ',otp)
       },1000)
   }
-
-  
 }
+
+const ForgotPassword = () => (
+    <div className="col-12">
+        <a href="/forgot-password">Forgot Password?</a>
+    </div>
+)
 
 const onChange = (id,evt) => {
     let ret = evt?.target?.value
@@ -147,6 +155,21 @@ const onChange = (id,evt) => {
         break
     }
 }
+
+useEffect(() => {
+ if(email.length > 0 && mailValidationRegex.test(email)){
+    let emailArr = email.split('@'), ret = ''
+    if(emailArr.length === 2){
+        ret += emailArr[0][0]
+
+      for(let i = 1; i < emailArr[0].length; i++){
+        ret += '*'
+      }
+      ret += `@${emailArr[1]}`
+      setEmailDisplay(ret)
+    }
+ }
+},[email])
 
     return (
       <>
@@ -195,7 +218,21 @@ const onChange = (id,evt) => {
                         )
                         : (
                           <div className="row g-3">
-                            <div className="col-md-12">
+                            { emailSupplied ? (
+                                <div className="col-md-12">
+                                <h4>Welcome, {emailDisplay}</h4>
+                               <div className="form-floating">
+                                 
+                                 <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
+                                 <label htmlFor="name">Your Password</label>
+                                
+                               </div>
+                               {passwordValidation && <ErrorText errorMessage={passwordValidationMessage}/>}
+                             </div>
+                            
+                            ) : (
+                                <div className="col-md-12">
+                               
                                 <div className="form-floating">
                                     <input 
                                       type="email" 
@@ -210,26 +247,19 @@ const onChange = (id,evt) => {
                                 </div>
                                 {emailValidation && <ErrorText errorMessage={emailValidationMessage}/>}
                             </div>
-                            
-                            { emailSupplied && (
-                              <div className="col-md-12">
-                                <div className="form-floating">
-                                  
-                                  <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
-                                  <label htmlFor="name">Your Password</label>
-                                 
-                                </div>
-                                {passwordValidation && <ErrorText errorMessage={passwordValidationMessage}/>}
-                              </div>
                             )}
                             
                             <div className="col-12">
-                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} disabled={loading} onClick={(email.length > 0 && password.length > 0) ? next : login}>
+                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} disabled={loading} onClick={(email.length > 0 && emailSupplied) ? next : login}>
                                     Next
                                     {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
                                     </button>
                             </div>
+                            <ForgotPassword/>
+                        </div>
+                        )}
 
+                        <div className="row g-3" style={{marginTop: 5}}>
                             <div className="col-md-12">
                                 <h3 style={{textAlign: 'center'}}>OR</h3>
                             </div>
@@ -247,8 +277,10 @@ const onChange = (id,evt) => {
                                     Continue with Apple
                                 </button>
                             </div>
+                            <div className="col-12">
+                                Don't have an account? <a href="/signup">Create an account</a>
+                            </div>
                         </div>
-                        )}
                     </form>
                 </div>
             </div>
