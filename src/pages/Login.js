@@ -4,9 +4,13 @@ import GenericBanner from "../components/GenericBanner"
 import {ReactComponent as AppleLogo} from '../img/logos/apple.svg'
 import {ReactComponent as GoogleLogo} from '../img/logos/google.svg'
 import loadingImage from '../img/loading.gif'
+import loginImg from '../img/login.png'
 
 const Login = () => {
 const [loading,setLoading] = useState(false)
+const [emailSupplied,setEmailSupplied] = useState(false)
+const [email,setEmail] = useState('')
+const [password,setPassword] = useState('')
 const navigate = useNavigate()
 
 const loginWithApple = (e) => {
@@ -26,7 +30,22 @@ const login = (e) => {
 
     setTimeout(() => {
      setLoading(false)
+     setEmailSupplied(true)
     },1000)
+}
+
+const onChange = (id,evt) => {
+    let ret = evt?.target?.value
+
+    switch(id){
+        case 'email':
+            setEmail(ret)
+        break
+
+        case 'password':
+            setPassword(ret)
+        break
+    }
 }
 
     return (
@@ -48,32 +67,26 @@ const login = (e) => {
             </div>
             <div className="row g-5">
                 <div className="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style={{visibility: 'visible', animationDelay: 0.1, animationName: 'fadeInUp'}}>
-                    <p className="mb-2">Our office:</p>
-                    <h4>123 Street, New York, USA</h4>
-                    <hr className="w-100"/>
-                    <p className="mb-2">Call us:</p>
-                    <h4>+012 345 6789</h4>
-                    <hr className="w-100"/>
-                    <p className="mb-2">Mail us:</p>
-                    <h4>info@example.com</h4>
-                    <hr className="w-100"/>
-                    <p className="mb-2">Follow us:</p>
-                    <div className="d-flex pt-2">
-                        <a className="btn btn-square btn-primary rounded-circle me-2" href=""><i className="fab fa-twitter"></i></a>
-                        <a className="btn btn-square btn-primary rounded-circle me-2" href=""><i className="fab fa-facebook-f"></i></a>
-                        <a className="btn btn-square btn-primary rounded-circle me-2" href=""><i className="fab fa-youtube"></i></a>
-                        <a className="btn btn-square btn-primary rounded-circle me-2" href=""><i className="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <img src={loginImg} alt='Login'/>
                 </div>
-                <div className="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s" style={{visibility: 'visible', animationDelay: 0.5, animationName: 'fadeInUp'}}>
+                <div className="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s" style={{marginTop: 200,visibility: 'visible', animationDelay: 0.5, animationName: 'fadeInUp'}}>
                     <form>
                         <div className="row g-3">
                             <div className="col-md-12">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="name" placeholder="Email "/>
+                                    <input type="text" className="form-control" value={email} onChange={(e) => {onChange('email',e)}} id="name" placeholder="Email "/>
                                     <label htmlFor="name">Your Email address</label>
                                 </div>
                             </div>
+                            
+                            { emailSupplied && (
+                              <div className="col-md-12">
+                                <div className="form-floating">
+                                  <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Email "/>
+                                  <label htmlFor="name">Your Password</label>
+                                </div>
+                              </div>
+                            )}
                             
                             <div className="col-12">
                                 <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} onClick={login}>
