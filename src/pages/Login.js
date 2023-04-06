@@ -18,6 +18,8 @@ const [emailValidationMessage,setEmailValidationMessage] = useState('')
 const [passwordValidationMessage,setPasswordValidationMessage] = useState('')
 const [display2FA,setDisplay2FA] = useState(false)
 const [otp,setOtp] = useState('')
+const [otpValidation,setOtpValidation] = useState(false)
+const [otpValidationMessage,setOtpValidationMessage] = useState('')
 
 const mailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -36,6 +38,7 @@ const loginWithGoogle = (e) => {
 const clearValidationErrors = () => {
     setEmailValidation(false)
     setPasswordValidation(false)
+    setOtpValidation(false)
 }
 
 const login = (e) => {
@@ -91,7 +94,40 @@ const next = (e) => {
     else{
         //validation successful
         console.log({email,password})
+        setLoading(false)
+        setDisplay2FA(true)
     }
+}
+
+const submit2FA = (e) => {
+  e.preventDefault()
+  clearValidationErrors()
+
+  setLoading(true)
+
+  if(otp.length < 1 || otp.length !== 6 ){
+    let ret = ''
+
+     if(otp.length !== 6){
+        ret = 'OTP must be 6 digits'
+     }
+
+     if(otp.length < 1){
+        ret = 'This field is required'
+     }
+
+     setOtpValidation(true)
+     setOtpValidationMessage(ret)
+     setLoading(false)
+  }
+  else{ 
+    setTimeout(() => {
+        setLoading(false)
+        console.log('submitting 2fa otp code: ',otp)
+      },1000)
+  }
+
+  
 }
 
 const onChange = (id,evt) => {
@@ -140,13 +176,21 @@ const onChange = (id,evt) => {
                             <div className="row g-3">
                                <div className="col-md-12">
                                  <div className="col-md-12">
-                                 <h4 className="display-6">A 6-digit OTP code has been sent to your email address. Please enter it below to continue</h4>
+                                 <h4>A 6-digit OTP code has been sent to your email address. Please enter it below to continue</h4>
                                  </div>
                                  <div className="form-floating">
                                     <input type="number" className="form-control" value={otp} onChange={(e) => {onChange('otp',e)}} id="otp" placeholder="OTP code "/>
                                     <label htmlFor="name">OTP Code</label>
                                  </div>
                                </div>
+                               {otpValidation && <ErrorText errorMessage={otpValidationMessage}/>}
+
+                               <div className="col-12">
+                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} disabled={loading} onClick={submit2FA}>
+                                    Submit
+                                    {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
+                                    </button>
+                            </div>
                             </div>
                         )
                         : (
