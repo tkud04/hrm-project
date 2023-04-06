@@ -70,9 +70,23 @@ const login = (e) => {
 
 const next = (e) => {
     e.preventDefault()
+    clearValidationErrors()
+    setLoading(true)
    
-    if(password.length < 1){
-    setPasswordValidation(true)
+    if(password.length < 1 || password.length < 7){
+        let ret = ''
+
+     if(password.length < 1){
+       ret = 'This field is required'
+     }
+
+     if(password.length < 7){
+        ret = 'Password must be at least 7 characters'
+     }
+
+     setPasswordValidation(true)
+     setPasswordValidationMessage(ret)
+     setLoading(false)
     }
     else{
         //validation successful
@@ -156,15 +170,17 @@ const onChange = (id,evt) => {
                             { emailSupplied && (
                               <div className="col-md-12">
                                 <div className="form-floating">
+                                  
                                   <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
                                   <label htmlFor="name">Your Password</label>
+                                 
                                 </div>
                                 {passwordValidation && <ErrorText errorMessage={passwordValidationMessage}/>}
                               </div>
                             )}
                             
                             <div className="col-12">
-                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} onClick={(email.length > 0 && password.length > 0) ? next : login}>
+                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} disabled={loading} onClick={(email.length > 0 && password.length > 0) ? next : login}>
                                     Next
                                     {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
                                     </button>
