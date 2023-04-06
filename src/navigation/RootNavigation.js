@@ -1,6 +1,10 @@
 import {
     Routes,
     Route,
+    redirect,
+    createBrowserRouter,
+    createRoutesFromElements,
+    RouterProvider
   } from "react-router-dom"
 
   import {BrowserRouter as Router} from 'react-router-dom'
@@ -14,11 +18,24 @@ import {
   import DashboardLayout from "../pages/DashboardLayout"
   import Dashboard from "../pages/Dashboard"
 
+  import { useLoginState } from "../contexts/loginStore"
+
   const RootNavigation = () => {
-    return (
-        <Router>
-         <Routes>
-           <Route element={<Layout/>}>
+    const loginState = useLoginState()
+
+
+    const redirectIfUnauthenticated = () => {
+        console.log('current user: ',loginState?.email?.length)
+        if(loginState?.email?.length < 1){
+          return redirect('/login')
+        }
+        return null
+    }
+
+    const router = createBrowserRouter(
+       createRoutesFromElements(
+         <>
+          <Route element={<Layout/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
@@ -27,10 +44,14 @@ import {
            </Route>  
 
            <Route element={<DashboardLayout/>}>
-            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/dashboard" element={<Dashboard/>} loader={redirectIfUnauthenticated}/>
            </Route>
-         </Routes>
-      </Router>
+        </>
+       )
+    )
+
+    return (
+        <RouterProvider router={router}/>
     )
   }
   

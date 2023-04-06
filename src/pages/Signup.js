@@ -181,7 +181,7 @@ useEffect(() => {
                 <div className="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style={{visibility: 'visible', animationDelay: 0.1, animationName: 'fadeInUp'}}>
                     <img src={signupImg} alt='Login'/>
                 </div>
-                <div className="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s" style={{marginTop: 200,visibility: 'visible', animationDelay: 0.5, animationName: 'fadeInUp'}}>
+                <div className="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s" style={{marginTop: 100,visibility: 'visible', animationDelay: 0.5, animationName: 'fadeInUp'}}>
                     <form>
                           <div className="row g-3">
                             <div className="col-md-6">
