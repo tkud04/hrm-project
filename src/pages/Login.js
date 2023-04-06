@@ -5,12 +5,18 @@ import {ReactComponent as AppleLogo} from '../img/logos/apple.svg'
 import {ReactComponent as GoogleLogo} from '../img/logos/google.svg'
 import loadingImage from '../img/loading.gif'
 import loginImg from '../img/login.png'
+import ErrorText from "../components/ErrorText"
 
 const Login = () => {
 const [loading,setLoading] = useState(false)
 const [emailSupplied,setEmailSupplied] = useState(false)
 const [email,setEmail] = useState('')
 const [password,setPassword] = useState('')
+const [emailValidation,setEmailValidation] = useState(false)
+const [passwordValidation,setPasswordValidation] = useState(false)
+const [display2FA,setDisplay2FA] = useState(false)
+const [otp,setOtp] = useState('')
+
 const navigate = useNavigate()
 
 const loginWithApple = (e) => {
@@ -23,15 +29,41 @@ const loginWithGoogle = (e) => {
     console.log('logging with Google')
 }
 
+const clearValidationErrors = () => {
+    setEmailValidation(false)
+    setPasswordValidation(false)
+}
+
 const login = (e) => {
+    clearValidationErrors()
+
     e.preventDefault()
     console.log('logging in normally')
     setLoading(true)
 
-    setTimeout(() => {
+    if(email.length < 1){
+     setEmailValidation(true)
      setLoading(false)
-     setEmailSupplied(true)
-    },1000)
+    }
+    else{
+      setTimeout(() => {
+        setLoading(false)
+        setEmailSupplied(true)
+      },1000)
+    }
+    
+}
+
+const next = (e) => {
+    e.preventDefault()
+   
+    if(password.length < 1){
+    setPasswordValidation(true)
+    }
+    else{
+        //validation successful
+        console.log({email,password})
+    }
 }
 
 const onChange = (id,evt) => {
@@ -44,6 +76,10 @@ const onChange = (id,evt) => {
 
         case 'password':
             setPassword(ret)
+        break
+
+        case 'otp':
+            setOtp(ret)
         break
     }
 }
@@ -71,10 +107,25 @@ const onChange = (id,evt) => {
                 </div>
                 <div className="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s" style={{marginTop: 200,visibility: 'visible', animationDelay: 0.5, animationName: 'fadeInUp'}}>
                     <form>
-                        <div className="row g-3">
+
+                        {display2FA ? (
+                            <div className="row g-3">
+                               <div className="col-md-12">
+                                 <div className="col-md-12">
+                                 <h4 className="display-6">A 6-digit OTP code has been sent to your email address. Please enter it below to continue</h4>
+                                 </div>
+                                 <div className="form-floating">
+                                    <input type="number" className="form-control" value={otp} onChange={(e) => {onChange('otp',e)}} id="otp" placeholder="OTP code "/>
+                                    <label htmlFor="name">OTP Code</label>
+                                 </div>
+                               </div>
+                            </div>
+                        )
+                        : (
+                          <div className="row g-3">
                             <div className="col-md-12">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" value={email} onChange={(e) => {onChange('email',e)}} id="name" placeholder="Email "/>
+                                    <input type="email" className="form-control" value={email} onChange={(e) => {onChange('email',e)}} id="name" placeholder="Email " required/>
                                     <label htmlFor="name">Your Email address</label>
                                 </div>
                             </div>
@@ -82,14 +133,14 @@ const onChange = (id,evt) => {
                             { emailSupplied && (
                               <div className="col-md-12">
                                 <div className="form-floating">
-                                  <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Email "/>
+                                  <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
                                   <label htmlFor="name">Your Password</label>
                                 </div>
                               </div>
                             )}
                             
                             <div className="col-12">
-                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} onClick={login}>
+                                <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} onClick={(email.length > 0 && password.length > 0) ? next : login}>
                                     Next
                                     {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
                                     </button>
@@ -113,6 +164,7 @@ const onChange = (id,evt) => {
                                 </button>
                             </div>
                         </div>
+                        )}
                     </form>
                 </div>
             </div>
