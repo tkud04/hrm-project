@@ -21,6 +21,7 @@ const [passwordValidation,setPasswordValidation] = useState(false)
 const [passwordValidationMessage,setPasswordValidationMessage] = useState('')
 const [confirmPassword,setConfirmPassword] = useState('')
 const [confirmPasswordValidation,setConfirmPasswordValidation] = useState(false)
+const [confirmPasswordValidationMessage,setConfirmPasswordValidationMessage] = useState(false)
 
 const mailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -50,7 +51,7 @@ const next = (e) => {
     clearValidationErrors()
     setLoading(true)
    
-    if(firstName.length < 1 || lastName.length < 1 || (email.length < 1 || !mailValidationRegex.test(email)) /*password.length < 1 || password.length < 7*/){
+    if(firstName.length < 1 || lastName.length < 1 || (email.length < 1 || !mailValidationRegex.test(email)) || password.length < 1 || password.length < 7 || confirmPassword.length < 1 || confirmPassword !== password){
         let ret = ''
     
         if(firstName.length < 1){
@@ -76,24 +77,42 @@ const next = (e) => {
             
         }
 
-    /* if(password.length < 7){
-        ret = 'Password must be at least 7 characters'
+     if(password.length < 7 || password.length < 1){
+        if(password.length < 7){
+            ret = 'Password must be at least 7 characters'
+         }
+    
+         if(password.length < 1){
+            ret = 'This field is required'
+          }
+          
+         setPasswordValidation(true)
+         setPasswordValidationMessage(ret)
+         
      }
 
-     if(password.length < 1){
-        ret = 'This field is required'
-      }
-      
+     if(confirmPassword.length < 1 || confirmPassword !== password){
+        if(confirmPassword.length < 1){
+            ret = 'This field is required'
+         }
+    
+         if(confirmPassword !== password){
+            ret = 'Passwords don\'t match'
+          }
+          
+         setConfirmPasswordValidation(true)
+         setConfirmPasswordValidationMessage(ret)
+         
+     }
 
-     setPasswordValidation(true)
-     setPasswordValidationMessage(ret)*/
      setLoading(false)
+     
     }
     else{
         //validation successful
        
         setTimeout(() => {
-            console.log({firstName,lastName,email})
+            console.log({firstName,lastName,email,password,confirmPassword})
             setLoading(false)
           },1000)
     }
@@ -176,7 +195,7 @@ useEffect(() => {
                                       placeholder="First Name "
                                       required
                                     />
-                                    <label htmlFor="name">Your First Name</label>
+                                    <label htmlFor="fname">Your First Name</label>
                                 </div>
                                 {firstNameValidation && <ErrorText errorMessage='This field is required'/>}
                             </div>
@@ -191,7 +210,7 @@ useEffect(() => {
                                       placeholder="Last Name "
                                       required
                                     />
-                                    <label htmlFor="name">Your Last Name</label>
+                                    <label htmlFor="lname">Your Last Name</label>
                                 </div>
                                 {lastNameValidation && <ErrorText errorMessage='This field is required'/>}
                             </div>
@@ -203,14 +222,34 @@ useEffect(() => {
                                       className="form-control" 
                                       value={email} 
                                       onChange={(e) => {onChange('email',e)}} 
-                                      id="name" 
+                                      id="email" 
                                       placeholder="Email "
                                       required
                                     />
-                                    <label htmlFor="name">Your Email address</label>
+                                    <label htmlFor="email">Your Email address</label>
                                 </div>
                                 {emailValidation && <ErrorText errorMessage={emailValidationMessage}/>}
                             </div>
+
+                            <div className="col-md-6">
+                               <div className="form-floating">
+                                 
+                                 <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
+                                 <label htmlFor="password">Your Password</label>
+                                
+                               </div>
+                               {passwordValidation && <ErrorText errorMessage={passwordValidationMessage}/>}
+                             </div>
+
+                             <div className="col-md-6">
+                               <div className="form-floating">
+                                 
+                                 <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={(e) => {onChange('confirm-password',e)}} placeholder="Confirm Password" required/>
+                                 <label htmlFor="confirm-password">Confirm Password</label>
+                                
+                               </div>
+                               {confirmPasswordValidation && <ErrorText errorMessage={confirmPasswordValidationMessage}/>}
+                             </div>
                             
                             <div className="col-12">
                                 <button className="btn btn-primary py-3 px-4 form-control" style={{flexDirection: 'row'}} disabled={loading} onClick={next}>
@@ -241,7 +280,7 @@ useEffect(() => {
                                 </button>
                             </div>
                             <div className="col-12">
-                                Don't have an account? <a href="/signup">Create an account</a>
+                                Already have an account? <a href="/login">Log in</a>
                             </div>
                         </div>
                     </form>
