@@ -14,8 +14,12 @@ const [email,setEmail] = useState('')
 const [password,setPassword] = useState('')
 const [emailValidation,setEmailValidation] = useState(false)
 const [passwordValidation,setPasswordValidation] = useState(false)
+const [emailValidationMessage,setEmailValidationMessage] = useState('')
+const [passwordValidationMessage,setPasswordValidationMessage] = useState('')
 const [display2FA,setDisplay2FA] = useState(false)
 const [otp,setOtp] = useState('')
+
+const mailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const navigate = useNavigate()
 
@@ -41,8 +45,18 @@ const login = (e) => {
     console.log('logging in normally')
     setLoading(true)
 
-    if(email.length < 1){
+    if(email.length < 1 || !mailValidationRegex.test(email)){
+     let msg = ''
+
+     if(!mailValidationRegex.test(email)){
+       msg = 'Enter a valid email address'
+     }
+     if(email.length < 1){
+       msg = 'This field is required'
+     }
+
      setEmailValidation(true)
+     setEmailValidationMessage(msg)
      setLoading(false)
     }
     else{
@@ -125,9 +139,18 @@ const onChange = (id,evt) => {
                           <div className="row g-3">
                             <div className="col-md-12">
                                 <div className="form-floating">
-                                    <input type="email" className="form-control" value={email} onChange={(e) => {onChange('email',e)}} id="name" placeholder="Email " required/>
+                                    <input 
+                                      type="email" 
+                                      className="form-control" 
+                                      value={email} 
+                                      onChange={(e) => {onChange('email',e)}} 
+                                      id="name" 
+                                      placeholder="Email "
+                                      required
+                                    />
                                     <label htmlFor="name">Your Email address</label>
                                 </div>
+                                {emailValidation && <ErrorText errorMessage={emailValidationMessage}/>}
                             </div>
                             
                             { emailSupplied && (
@@ -136,6 +159,7 @@ const onChange = (id,evt) => {
                                   <input type="password" className="form-control" id="password" value={password} onChange={(e) => {onChange('password',e)}} placeholder="Password" required/>
                                   <label htmlFor="name">Your Password</label>
                                 </div>
+                                {passwordValidation && <ErrorText errorMessage={passwordValidationMessage}/>}
                               </div>
                             )}
                             

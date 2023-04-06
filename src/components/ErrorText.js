@@ -7,10 +7,9 @@ const ErrorText = ({errorMessage, noPadding}) => {
     return null
   }
   return (
-    <a href="#">
-      <p
+     <p
         fontFamily="normal"
-        color="#D2232A"
+        className="text-danger"
         style={{
             marginTop: noPadding ? 0 : 10,
             marginLeft: noPadding ? 0 : 10,
@@ -18,7 +17,6 @@ const ErrorText = ({errorMessage, noPadding}) => {
         >
         {errorMessage}
       </p>
-    </a>
   );
 };
 
