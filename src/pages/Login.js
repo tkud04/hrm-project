@@ -23,6 +23,10 @@ const login = (e) => {
     e.preventDefault()
     console.log('logging in normally')
     setLoading(true)
+
+    setTimeout(() => {
+     setLoading(false)
+    },1000)
 }
 
     return (
