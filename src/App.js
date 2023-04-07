@@ -1,13 +1,17 @@
 import './App.css'
 import { LoginProvider } from "./contexts/loginStore"
-import RootNavigation from './navigation/RootNavigation';
+import { GlobalProvider } from './contexts/globalContext'
+import RootNavigation from './navigation/RootNavigation'
 
 function App() {
 
 return (
-  <LoginProvider>
-    <RootNavigation/>
-  </LoginProvider>
+  <GlobalProvider>
+    <LoginProvider>
+      <RootNavigation/>
+    </LoginProvider>
+  </GlobalProvider>
+  
 )
 }
 

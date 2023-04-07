@@ -4,8 +4,7 @@ import { storeProfileData } from '../common/utils'
 const initialState = {
     firstName: "",
     lastName: "",
-    email: "",
-    phone: ""
+    email: ""
 }
 
 const CONTEXT_ERROR =
@@ -38,15 +37,14 @@ function reducer(prevState, action) {
 function LoginProvider({children}) {
     const [state, dispatch] = React.useReducer(reducer, initialState)
   
-    React.useEffect(() => {
-      storeProfileData(state)
-    },[state])
-  
     // actions
     const LoginDispatch = React.useMemo(
       () => ({
         login: async (credentials) => {
           console.log({credentials})
+        },
+        logout: async () => {
+          dispatch({type: 'LOG_OUT'})
         }
       }),[state]
     )

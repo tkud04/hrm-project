@@ -113,9 +113,6 @@ const Banner = () => {
     )
 }
 
-useEffect(() => {
- console.log({loginState})
-},[])
 
     return (
       <>
@@ -210,7 +207,7 @@ useEffect(() => {
     <div className="container py-5">
         <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: 500}}>
             <h1 className="display-6">Services</h1>
-            <p className="text-primary fs-5 mb-5">Buy, Sell And Exchange Cryptocurrency</p>
+            <p className="text-primary fs-5 mb-5">Buy, Sell, Exchange and Trade Cryptocurrencies</p>
         </div>
         <div className="row g-4">
           {services.map((s,index) => {
