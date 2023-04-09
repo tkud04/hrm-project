@@ -24,5 +24,5 @@ export const decryptData = (encKey='',str='') => {
     padding: CryptoJS.pad.Pkcs7,
   };
   let decryptedData = CryptoJS.AES.decrypt(str, keyArr,decOptions)
-  return decryptedData.toString()
+  return decryptedData.toString(CryptoJS.enc.Utf8)
 }

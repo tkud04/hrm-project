@@ -15,7 +15,8 @@ export const testEncryption = (data={test:'testing encryption/decryption'}) => {
 export const restoreProfileData = async () => {
     try {
       const data = await localStorage.getItem(PROFILE)
-      return data ? JSON.parse(data) : null
+      const decryptedData = decryptData(encKey,data)
+      return data ? JSON.parse(decryptedData) : null
     } 
     catch (error) {
         console.log('error restoring profile data: ',error)
@@ -25,7 +26,8 @@ export const restoreProfileData = async () => {
 
 export const storeProfileData = async (data) => {
     try {
-        return await localStorage.setItem(PROFILE, JSON.stringify(data))
+        let encryptedData = encryptData(encKey,JSON.stringify(data))
+        return await localStorage.setItem(PROFILE, encryptedData)
       }
      catch (error) {
         console.log('error storing profile data: ',error)

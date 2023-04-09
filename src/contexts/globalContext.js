@@ -47,6 +47,12 @@ function GlobalProvider({children}) {
       () => ({
         getBalance: async (credentials) => {
           console.log({credentials})
+        },
+        setProfile: (data) => {
+          dispatch({
+            type: 'SET_DATA',
+            action: data
+          })
         }
       }),[state]
     )

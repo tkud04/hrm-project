@@ -34,7 +34,7 @@ const Layout = () => {
    })
 
    useEffect(() => {
-     testEncryption()
+     restoreProfile()
    },[])
 
 

@@ -42,6 +42,10 @@ function LoginProvider({children}) {
       () => ({
         login: async (credentials) => {
           console.log({credentials})
+          dispatch({
+            type: 'SET_DATA',
+            data: {email: credentials?.email}
+          })
         },
         logout: async () => {
           dispatch({type: 'LOG_OUT'})
