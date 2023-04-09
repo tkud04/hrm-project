@@ -4,7 +4,8 @@ import logo from '../img/icon-1.png'
 import { useGlobalState } from "../contexts/globalContext"
 
 const SideBar = ({
-    logout
+    logout,
+    activeBar='profile'
 }) => {
     const globalState = useGlobalState()
     const ll = () => {
@@ -12,7 +13,12 @@ const SideBar = ({
     }
 
     const logoutFunction = typeof logout === 'function' ? logout : ll
-
+    
+    const getActiveBar = (str) => {
+     let ret = activeBar === str ? 'active' : 'link-dark'
+     ret = 'nav-link ' + ret
+     return ret
+    }
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: 280}}>
         <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -22,31 +28,31 @@ const SideBar = ({
         <hr/>
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
+            <a href="#" className={getActiveBar('profile')} aria-current="page">
               <i className="fa fa-user" style={styles.linkIcon}></i>
               Profile
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="#" className={getActiveBar('security')} >
             <i className="fa fa-shield" style={styles.linkIcon}></i>
               Security
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="#" className={getActiveBar('verification')}>
             <i className="fa fa-contact" style={styles.linkIcon}></i>
               Verification
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="#" className={getActiveBar('notifications')}>
             <i className="fa fa-bell" style={styles.linkIcon}></i>
               Notifications
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="#" className={getActiveBar('activity')}>
             <i className="fa fa-pulse" style={styles.linkIcon}></i>
               Activity
             </a>
