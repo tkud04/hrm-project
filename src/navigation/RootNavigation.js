@@ -12,6 +12,7 @@ import {
   import ContactUs from "../pages/ContactUs"
   import Login from "../pages/Login"
   import Signup from "../pages/Signup"
+  import Security from "../pages/Security"
 
   import DashboardLayout from "../pages/DashboardLayout"
   import Dashboard from "../pages/Dashboard"
@@ -39,17 +40,18 @@ import {
     const router = createBrowserRouter(
        createRoutesFromElements(
          <>
-          <Route element={<Layout/>} loader={redirectIfAuthenticated}>
+          <Route element={<Layout/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/login" element={<Login/>} loader={redirectIfAuthenticated}/>
+            <Route path="/signup" element={<Signup/>} loader={redirectIfAuthenticated}/>
            </Route>  
 
            <Route element={<DashboardLayout/>} loader={redirectIfUnauthenticated}>
             <Route path="/dashboard" element={<Dashboard/>}/>
-           </Route>
+            <Route path="/security" element={<Security/>}/>
+            </Route>
         </>
        )
     )
