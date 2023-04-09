@@ -6,6 +6,7 @@ import { restoreProfileData, testEncryption } from "../common/utils"
 import { useGlobalState,useGlobalDispatch } from "../contexts/globalContext"
 import { useLoginDispatch } from "../contexts/loginStore"
 import { removeProfileData } from "../common/utils"
+import SideBar from "../components/SideBar"
 
 
 const DashboardLayout = () => {
@@ -67,7 +68,17 @@ const DashboardLayout = () => {
       <NavBar logout={logout}/>
      
 
-      <Outlet/>
+      <div className="container-xxl py-5">
+        <div className="row">
+            <div className="col-5">
+              <SideBar/>
+            </div>
+            <div className="col-7">
+                <Outlet/>
+            </div>
+          </div>
+      </div>
+     
 
       {/* FOOTER */}
       <div className="container-fluid bg-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
