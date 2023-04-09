@@ -21,6 +21,12 @@ const CONTEXT_ERROR =
     getBalance: () => {
       throw new Error(CONTEXT_ERROR)
     },
+    setProfile: () => {
+      throw new Error(CONTEXT_ERROR)
+    },
+    logout: () => {
+      throw new Error(CONTEXT_ERROR)
+    },
    
 })
 
@@ -38,10 +44,6 @@ function reducer(prevState, action) {
 function GlobalProvider({children}) {
     const [state, dispatch] = React.useReducer(reducer, initialState)
   
-    React.useEffect(() => {
-      storeProfileData(state)
-    },[state])
-  
     // actions
     const GlobalDispatch = React.useMemo(
       () => ({
@@ -49,9 +51,15 @@ function GlobalProvider({children}) {
           console.log({credentials})
         },
         setProfile: (data) => {
+          storeProfileData(data)
           dispatch({
             type: 'SET_DATA',
-            action: data
+            data
+          })
+        },
+        logout: () => {
+          dispatch({
+            type: 'LOG_OUT'
           })
         }
       }),[state]

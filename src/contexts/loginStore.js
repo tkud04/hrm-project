@@ -41,7 +41,6 @@ function LoginProvider({children}) {
     const LoginDispatch = React.useMemo(
       () => ({
         login: async (credentials) => {
-          console.log({credentials})
           dispatch({
             type: 'SET_DATA',
             data: {email: credentials?.email}

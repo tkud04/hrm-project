@@ -6,6 +6,8 @@ import {ReactComponent as GoogleLogo} from '../img/logos/google.svg'
 import loadingImage from '../img/loading.gif'
 import loginImg from '../img/login.png'
 import ErrorText from "../components/ErrorText"
+import { useLoginState, useLoginDispatch } from "../contexts/loginStore"
+import { useGlobalState, useGlobalDispatch } from "../contexts/globalContext"
 
 const Login = () => {
 const [loading,setLoading] = useState(false)
@@ -21,6 +23,9 @@ const [otp,setOtp] = useState('')
 const [otpValidation,setOtpValidation] = useState(false)
 const [otpValidationMessage,setOtpValidationMessage] = useState('')
 const [emailDisplay,setEmailDisplay] = useState('')
+
+const loginState = useLoginState(), loginDispatch = useLoginDispatch(),
+      globalState = useGlobalState(), globalDispatch = useGlobalDispatch()
 
 const mailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -128,7 +133,22 @@ const submit2FA = (e) => {
     setTimeout(() => {
         setLoading(false)
         console.log('submitting 2fa otp code: ',otp)
+
+        //Temporary login
+        loginDispatch?.login({email})
+        let profileData = {
+            firstName: "John",
+            lastName: "Snow",
+            email,
+            phone: '',
+            role: 'user',
+            balance: '0'
+        }
+        globalDispatch?.setProfile(profileData)
+       console.log('navigating to dashboard, globalState: ',globalState)
+       navigate('/dashboard')
       },1000)
+     
   }
 }
 

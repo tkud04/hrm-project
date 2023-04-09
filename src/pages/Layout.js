@@ -22,7 +22,7 @@ const Layout = () => {
 
     const restoreProfile = async () => {
         const response = await restoreProfileData()
-       
+       console.log('tried to restore profile data: ',response)
         if (response) {
           globalDispatch.setProfile(response)
         }

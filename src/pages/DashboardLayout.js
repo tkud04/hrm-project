@@ -3,12 +3,15 @@ import { Outlet } from "react-router-dom"
 import logo from '../img/icon-1.png'
 import NavBar from "../components/NavBar"
 import { restoreProfileData, testEncryption } from "../common/utils"
-import { useGlobalDispatch } from "../contexts/globalContext"
+import { useGlobalState,useGlobalDispatch } from "../contexts/globalContext"
+import { useLoginDispatch } from "../contexts/loginStore"
+import { removeProfileData } from "../common/utils"
 
 
 const DashboardLayout = () => {
    const [spinnerVisible,setSpinnerVisible] = useState(true)
-   const globalDispatch = useGlobalDispatch()
+   const globalState = useGlobalState(), globalDispatch = useGlobalDispatch(),
+   loginDispatch = useLoginDispatch()
   
     // Spinner
     const spinner = function () {
@@ -27,15 +30,20 @@ const DashboardLayout = () => {
         globalDispatch.setProfile(response)
       }
     }
+
+    const logout = async () => {
+      console.log('logging out')
+    await removeProfileData()
+    globalDispatch?.logout()
+    loginDispatch?.logout()
+  }
     
 
    useEffect(() => {
      spinner()
    })
 
-   useEffect(() => {
-      restoreProfile()
-    },[])
+  
 
 
 
@@ -56,7 +64,7 @@ const DashboardLayout = () => {
        )}
       {/* Navbar */}
 
-      <NavBar/>
+      <NavBar logout={logout}/>
      
 
       <Outlet/>

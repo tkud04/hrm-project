@@ -23,9 +23,15 @@ import {
 
 
     const redirectIfUnauthenticated = () => {
-        console.log('current user: ',globalState?.email?.length)
         if(globalState?.email?.length < 1){
           return redirect('/login')
+        }
+        return null
+    }
+
+    const redirectIfAuthenticated = () => {
+        if(globalState?.email?.length > 1){
+          return redirect('/dashboard')
         }
         return null
     }
@@ -33,7 +39,7 @@ import {
     const router = createBrowserRouter(
        createRoutesFromElements(
          <>
-          <Route element={<Layout/>}>
+          <Route element={<Layout/>} loader={redirectIfAuthenticated}>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<ContactUs/>}/>

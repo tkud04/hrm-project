@@ -33,3 +33,12 @@ export const storeProfileData = async (data) => {
         console.log('error storing profile data: ',error)
      }
 }
+
+export const removeProfileData = async () => {
+    try{
+      localStorage.clear()
+    }
+    catch (error){
+        console.log('error removing profile data: ',error)
+    }
+}

@@ -1,10 +1,17 @@
 import React, {useState,useEffect} from "react"
 import { Outlet } from "react-router-dom"
 import logo from '../img/icon-1.png'
-import { useLoginState } from "../contexts/loginStore"
+import { useGlobalState } from "../contexts/globalContext"
 
-const NavBar = () => {
-    const loginState = useLoginState()
+const NavBar = ({
+    logout
+}) => {
+    const globalState = useGlobalState()
+    const ll = () => {
+        console.log('no logout function is defined')
+    }
+
+    const logoutFunction = typeof logout === 'function' ? logout : ll
 
     return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
@@ -21,7 +28,7 @@ const NavBar = () => {
             <div className="navbar-nav ms-auto py-4 py-lg-0">
                 <a href="/" className="nav-item nav-link active">Home</a>
                 <a href="/about" className="nav-item nav-link">About</a>
-                {loginState?.email.length < 1 ? (
+                {globalState?.email.length < 1 ? (
                     <div className="nav-item dropdown">
                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Login</a>
                     <div className="dropdown-menu shadow-sm m-0">
@@ -31,10 +38,10 @@ const NavBar = () => {
                    </div>
                 ) : (
                     <div className="nav-item dropdown">
-                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hi, Dave</a>
+                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hi, {globalState?.firstName}</a>
                      <div className="dropdown-menu shadow-sm m-0">
                         <a href="/dashboard" className="dropdown-item">Dashboard</a>
-                        <a href="/signup" className="dropdown-item">Sign out</a>
+                        <a href="#" onClick={logoutFunction} className="dropdown-item">Sign out</a>
                      </div>
                    </div>
                 )}
