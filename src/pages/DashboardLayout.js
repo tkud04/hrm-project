@@ -70,10 +70,10 @@ const DashboardLayout = () => {
 
       <div className="container-xxl py-5">
         <div className="row">
-            <div className="col-5">
+            <div className="col-md-4">
               <SideBar/>
             </div>
-            <div className="col-7">
+            <div className="col-md-8">
                 <Outlet/>
             </div>
           </div>
