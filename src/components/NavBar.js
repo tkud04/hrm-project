@@ -50,11 +50,11 @@ const NavBar = ({
             </div>
             <div className="h-100 d-lg-inline-flex align-items-center d-none">
                 <a className="btn btn-square rounded-circle bg-light text-primary me-2" href="#"><i
-                        className="fab fa-facebook-f"></i></a>
+                        className="fa fa-facebook-f"></i></a>
                 <a className="btn btn-square rounded-circle bg-light text-primary me-2" href="#"><i
-                        className="fab fa-twitter"></i></a>
+                        className="fa fa-twitter"></i></a>
                 <a className="btn btn-square rounded-circle bg-light text-primary me-0" href="#"><i
-                        className="fab fa-linkedin-in"></i></a>
+                        className="fa fa-linkedin"></i></a>
             </div>
         </div>
     </nav>
