@@ -22,7 +22,7 @@ const Layout = () => {
 
    useEffect(() => {
      spinner()
-   })
+   },[])
 
 
 

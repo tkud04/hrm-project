@@ -11,7 +11,6 @@ const ProtectedRoute = ({children,dest='/login'}) => {
        navigate(dest)
     }
  
-    console.log('returning children')
     return children
  }
 

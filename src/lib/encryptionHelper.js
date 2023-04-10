@@ -23,6 +23,12 @@ export const decryptData = (encKey='',str='') => {
     // @ts-ignore
     padding: CryptoJS.pad.Pkcs7,
   };
-  let decryptedData = CryptoJS.AES.decrypt(str, keyArr,decOptions)
-  return decryptedData.toString(CryptoJS.enc.Utf8)
+  let ret = null
+
+  if(str !== null){
+    let decryptedData = CryptoJS.AES.decrypt(str, keyArr,decOptions)
+    ret = decryptedData.toString(CryptoJS.enc.Utf8)
+  }
+  
+  return ret
 }
