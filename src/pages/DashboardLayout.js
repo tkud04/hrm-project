@@ -6,7 +6,6 @@ import { restoreProfileData, testEncryption } from "../common/utils"
 import { useGlobalState,useGlobalDispatch } from "../contexts/globalContext"
 import { useLoginDispatch } from "../contexts/loginStore"
 import { removeProfileData } from "../common/utils"
-import SideBar from "../components/SideBar"
 
 
 const DashboardLayout = () => {
@@ -69,14 +68,7 @@ const DashboardLayout = () => {
      
 
       <div className="container-xxl py-5">
-        <div className="row">
-            <div className="col-md-4">
-              <SideBar/>
-            </div>
-            <div className="col-md-8">
-                <Outlet/>
-            </div>
-          </div>
+        <Outlet/>
       </div>
      
 

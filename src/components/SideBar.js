@@ -1,6 +1,4 @@
 import React, {useState,useEffect} from "react"
-import { Outlet } from "react-router-dom"
-import logo from '../img/icon-1.png'
 import { useGlobalState } from "../contexts/globalContext"
 
 const SideBar = ({
@@ -34,14 +32,14 @@ const SideBar = ({
             </a>
           </li>
           <li>
-            <a href="#" className={getActiveBar('security')} >
+            <a href="/security" className={getActiveBar('security')} >
             <i className="fa fa-shield" style={styles.linkIcon}></i>
               Security
             </a>
           </li>
           <li>
             <a href="#" className={getActiveBar('verification')}>
-            <i className="fa fa-contact" style={styles.linkIcon}></i>
+            <i className="fa fa-address-card" style={styles.linkIcon}></i>
               Verification
             </a>
           </li>
@@ -53,7 +51,7 @@ const SideBar = ({
           </li>
           <li>
             <a href="#" className={getActiveBar('activity')}>
-            <i className="fa fa-pulse" style={styles.linkIcon}></i>
+            <i className="fa fa-hourglass-half" style={styles.linkIcon}></i>
               Activity
             </a>
           </li>

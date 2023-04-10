@@ -1,11 +1,19 @@
 import React,{useState,useEffect} from "react"
+import SideBar from "../components/SideBar"
 
 const Security = () => {
   
     return (
-      <div className="container-xxl py-5">
-        <div className="container">
-         <h4>Dashboard</h4>
+      <div className="row">
+        <div className="col-md-4">
+         <SideBar
+          activeBar="security"
+         />
+        </div>
+        <div className="col-md-8">
+          <div className="py-5">
+           <h4>Security</h4>
+          </div>
         </div>
       </div>
     )
