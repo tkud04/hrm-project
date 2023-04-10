@@ -1,8 +1,6 @@
 import React, {useState,useEffect} from "react"
 import { Outlet } from "react-router-dom"
-import logo from '../img/icon-1.png'
 import NavBar from "../components/NavBar"
-import { restoreProfileData, testEncryption } from "../common/utils"
 import { useGlobalState,useGlobalDispatch } from "../contexts/globalContext"
 import { useLoginDispatch } from "../contexts/loginStore"
 import { removeProfileData } from "../common/utils"
@@ -24,13 +22,6 @@ const DashboardLayout = () => {
         }, 1);
     }
 
-    const restoreProfile = async () => {
-      const response = await restoreProfileData()
-     
-      if (response) {
-        globalDispatch.setProfile(response)
-      }
-    }
 
     const logout = async () => {
       console.log('logging out')

@@ -1,14 +1,11 @@
 import React, {useState,useEffect} from "react"
 import { Outlet } from "react-router-dom"
 import NavBar from "../components/NavBar"
-import { restoreProfileData, testEncryption } from "../common/utils"
-import { useGlobalDispatch } from "../contexts/globalContext"
 import Footer from "../components/Footer"
 
 
 const Layout = () => {
    const [spinnerVisible,setSpinnerVisible] = useState(true)
-   const globalDispatch = useGlobalDispatch()
   
     // Spinner
     const spinner = function () {
@@ -20,22 +17,12 @@ const Layout = () => {
         }, 1);
     }
 
-    const restoreProfile = async () => {
-        const response = await restoreProfileData()
-       console.log('tried to restore profile data: ',response)
-        if (response) {
-          globalDispatch.setProfile(response)
-        }
-      }
+
     
 
    useEffect(() => {
      spinner()
    })
-
-   useEffect(() => {
-     restoreProfile()
-   },[])
 
 
 

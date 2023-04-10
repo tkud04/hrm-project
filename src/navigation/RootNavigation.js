@@ -1,9 +1,9 @@
+import React, {useState,useEffect} from "react"
 import {
     Route,
-    redirect,
     createBrowserRouter,
     createRoutesFromElements,
-    RouterProvider
+    RouterProvider,
   } from "react-router-dom"
 
   import Layout from "../pages/Layout"
@@ -17,44 +17,40 @@ import {
 
   import DashboardLayout from "../pages/DashboardLayout"
   import Dashboard from "../pages/Dashboard"
+import { useGlobalDispatch } from "../contexts/globalContext"
+import { restoreProfileData } from "../common/utils"
+import ProtectedRoute from "../components/ProtectedRoute"
 
-  import { useGlobalState } from "../contexts/globalContext"
+
+
 
   const RootNavigation = () => {
-    const globalState = useGlobalState()
+    const [destination,setDestination] = useState('')
+   
+    const globalDispatch = useGlobalDispatch()
+    
 
-
-    const redirectIfUnauthenticated = () => {
-        if(globalState?.email?.length < 1){
-          return redirect('/login')
-        }
-        return null
+  const restoreProfile = async () => {
+    const response = await restoreProfileData()
+  // console.log('tried to restore profile info: ',response)
+    if (response) {
+      globalDispatch.setProfile(response)
     }
+  }
 
-    const redirectIfAuthenticated = (str='dashboard') => {
-        if(globalState?.email?.length > 1){
-            console.log({str})
-          return redirect('/dashboard')
-        }
-        return null
-    }
+  useEffect(() => {
+    restoreProfile()
+  },[])
 
-    const authRedirect = (isSecured=false,dest) => {
-        console.log({isSecured,dest})
-        if(isSecured){
-            if(globalState?.email?.length > 1){
-              return redirect(`dashboard`)
-            }
-            return null
-        }
-        
-        else{
-            if(globalState?.email?.length < 1){
-                return redirect('/login')
-              }
-              return null
-        }
-    }
+
+
+    const protectRoute = (children) => (
+       <ProtectedRoute>
+        {children}
+       </ProtectedRoute>
+    )
+
+
 
     const router = createBrowserRouter(
        createRoutesFromElements(
@@ -63,21 +59,22 @@ import {
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
-            <Route path="/login" element={<Login/>} loader={() => authRedirect(false,'login')}/>
-            <Route path="/signup" element={<Signup/>} loader={() => authRedirect(false,'signup')}/>
+            <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<Signup/>} />
             <Route path="*" element={<NotFound/>}/>
            </Route>  
 
            <Route element={<DashboardLayout/>}>
-            <Route path="/dashboard" element={<Dashboard/>} loader={() => authRedirect(true,'dashboard')}/>
-            <Route path="/security" element={<Security/>} loader={() => authRedirect(true,'security')}/>
+            <Route path="/dashboard" element={protectRoute(<Dashboard/>)}  />
+            <Route path="/security" element={protectRoute(<Security/>)} />
             </Route>
         </>
        )
     )
 
+
     return (
-        <RouterProvider router={router}/>
+       <RouterProvider router={router}/>
     )
   }
   
