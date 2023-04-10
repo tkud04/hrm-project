@@ -1,10 +1,25 @@
 import React from 'react'
+import loadingImage from '../img/loading.gif'
 
 const GenericModal = ({
 title='',
 id='',
-body
+body,
+buttonText='Submit',
+onSubmit,
+loading=false
 }) => {
+
+  const next = () => {
+    if(typeof onSubmit === 'function'){
+      onSubmit()
+    }
+    else{
+      console.log('no onSubmit function is defined')
+      document.querySelector('#close-button').click()
+    }
+
+  }
  
 return (
 
@@ -20,8 +35,9 @@ return (
         {body}
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+        <button type="button" className="btn btn-secondary" id='close-button' data-bs-dismiss="modal">Close</button>
+        <button type="button" onClick={next} className="btn btn-primary" disabled={loading}>{buttonText}</button>
+        {loading && (<img src={loadingImage} style={{width: 20, marginLeft: 5}}/>)}
       </div>
     </div>
   </div>
