@@ -112,7 +112,7 @@ const Security = () => {
            <div style={styles.itemWrapper}>
              <h4 style={styles.itemTitle}>Two-Factor Authentication <i className=" fa fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-title="Default tooltip"></i></h4>
              <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between'}}>
-              <div style={{flexDirection: 'row', marginLeft: 5}}>
+              <div style={{flexDirection: 'row', marginLeft: 10}}>
                 <i className="fa fa-envelope"></i>
                 <span style={{marginLeft: 10, color: 'rgb(38, 55, 77)'}}>Email</span>
               </div>
@@ -124,7 +124,7 @@ const Security = () => {
            <div style={{...styles.itemWrapper,marginTop: 50}}>
              <h4 style={styles.itemTitle}>Password </h4>
              <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between'}}>
-              <div style={{flexDirection: 'row', marginLeft: 5}}>
+              <div style={{flexDirection: 'row', marginLeft: 10}}>
                 <i className="fa fa-lock"></i>
                 <span style={{marginLeft: 10, color: 'rgb(38, 55, 77)'}}>Change Password</span>
               </div>

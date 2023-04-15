@@ -13,6 +13,7 @@ import {
   import Login from "../pages/Login"
   import Signup from "../pages/Signup"
   import Security from "../pages/Security"
+  import Verification from "../pages/Verification"
   import NotFound from "../pages/NotFound"
 
   import DashboardLayout from "../pages/DashboardLayout"
@@ -67,6 +68,7 @@ import ProtectedRoute from "../components/ProtectedRoute"
            <Route element={<DashboardLayout/>}>
             <Route path="/dashboard" element={protectRoute(<Dashboard/>)}  />
             <Route path="/security" element={protectRoute(<Security/>)} />
+            <Route path="/verification" element={protectRoute(<Verification/>)} />
             </Route>
         </>
        )

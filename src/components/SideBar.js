@@ -33,19 +33,19 @@ const SideBar = ({
             </a>
           </li>
           <li>
-            <a href="#" className={getActiveBar('verification')}>
+            <a href="/verification" className={getActiveBar('verification')}>
             <i className="fa fa-address-card" style={styles.linkIcon}></i>
               Verification
             </a>
           </li>
           <li>
-            <a href="#" className={getActiveBar('notifications')}>
+            <a href="/notifications" className={getActiveBar('notifications')}>
             <i className="fa fa-bell" style={styles.linkIcon}></i>
               Notifications
             </a>
           </li>
           <li>
-            <a href="#" className={getActiveBar('activity')}>
+            <a href="/activity" className={getActiveBar('activity')}>
             <i className="fa fa-hourglass-half" style={styles.linkIcon}></i>
               Activity
             </a>
