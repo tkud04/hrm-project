@@ -130,6 +130,20 @@ const Verification = () => {
              </a>
            </div>
           </div>
+
+          <div className="row">
+            {tabId === 'address' && (
+              <div className="col-md-12">
+                <h4>Address Tab</h4>
+              </div>
+            )}
+
+            {tabId === 'id' && (
+              <div className="col-md-12">
+                 <h4>ID Tab</h4>
+              </div>
+            )}
+          </div>
         </div>
      
       </div>
