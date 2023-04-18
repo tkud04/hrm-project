@@ -3,7 +3,7 @@ import { useGlobalState } from "../contexts/globalContext"
 
 const SideBar = ({
     logout,
-    activeBar='profile'
+    activeBar='dashboard'
 }) => {
     const globalState = useGlobalState()
     const ll = () => {
@@ -21,9 +21,9 @@ const SideBar = ({
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: 280}}>
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
-            <a href="/dashboard" className={getActiveBar('profile')} aria-current="page">
+            <a href="/dashboard" className={getActiveBar('dashboard')} aria-current="page">
               <i className="fa fa-user" style={styles.linkIcon}></i>
-              Profile
+              Dashboard
             </a>
           </li>
           <li>
