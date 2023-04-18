@@ -18,7 +18,7 @@ const SideBar = ({
      return ret
     }
     return (
-        <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: 280}}>
+        <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: 280, height: 500}}>
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
             <a href="/dashboard" className={getActiveBar('dashboard')} aria-current="page">

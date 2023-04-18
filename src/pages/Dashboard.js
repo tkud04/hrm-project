@@ -3,6 +3,7 @@ import SideBar from "../components/SideBar"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 import ApexCharts from "apexcharts"
+import { ReactSVG } from "react-svg"
 
 const Dashboard = () => {
    const [tabs,setTabs] = useState([])
@@ -321,12 +322,131 @@ const Dashboard = () => {
       chart.render()
     }
 
+    const currencies = [
+      {name: 'Ada',status: 'New',img: require('../images/ada.png')},
+      {name: 'Ark',status: 'New',img: require('../images/ark.png')},
+      {name: 'Tron',status: 'New',img: require('../images/trx.png')},
+      {name: 'Eos',status: 'New',img: require('../images/eos.png')},
+      {name: 'Qtum',status: 'New',img: require('../images/qtum.png')},
+      {name: 'Bitcoin',status: 'Top',img: require('../images/btc.png')},
+      {name: 'Ethereum',status: 'Old',img: require('../images/eth.png')},
+      {name: 'Litecoin',status: 'Old',img: require('../images/ltc.png')},
+      {name: 'Dash',status: 'Old',img: require('../images/dash.png')}
+      ]
+
+   const marketItems = [
+      {
+         name: 'Bitcoin',
+         abbr: 'BTC',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      },
+      {
+         name: 'Ethereum',
+         abbr: 'ETH',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      },
+      {
+         name: 'Dash',
+         abbr: 'DASH',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      },
+      {
+         name: 'Litecoin',
+         abbr: 'LTC',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      },
+      {
+         name: 'Tron',
+         abbr: 'TRX',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      },
+      {
+         name: 'Qtum',
+         abbr: 'QTUM',
+         priceData: {
+            currentPrice: 1.2345,
+            price12Hours: 1.03334,
+            price7Days: 0.89122
+         }
+      }
+      
+
+   ]
+      
+
+
+
+    const TradeMarketItem = ({name,abbr,priceData}) => {
+      const {currentPrice,price12Hours,price7Days} = priceData
+      let itemImg = currencies.find(i => i.name === name)
+      let isIncrease = price12Hours > currentPrice
+       
+      let priceColor = isIncrease ? 'green' : 'red'
+
+      return (
+         <li className="list-group-item">
+            <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between'}}>
+              <img width={50} height={50} src={itemImg.img} alt={name}/>
+              <div>
+               <p style={{marginBottom: 1}}>{abbr}</p>
+               <p style={{marginBottom: 1}}>{name}</p>
+              </div>
+              <img width={50} height={50} src={require(`../img/${isIncrease ? 'bull' : 'bear'}.svg`)}/>
+              <div>
+               <p style={{marginBottom: 1}}>{currentPrice}</p>
+               <p style={{marginBottom: 1,color: priceColor}}>{price12Hours} 12h</p>
+               <p style={{marginBottom: 1,color: priceColor}}>{price7Days} 7d</p>
+              </div>
+            </div>
+         </li>
+      )
+    }
+
+    const TradeMarketSideBar = () => {
+      return (
+         <div className="card border-left-primary shadow h-100">
+           <div className="card-header">TRADE MARKET</div>
+           <div className="card-body">
+             <ul className="list-group list-group-flush">
+               {marketItems.map((item,index) => (
+                 <TradeMarketItem
+                  key={index}
+                  name={item.name}
+                  abbr={item.abbr}
+                  priceData={item.priceData}
+                 />
+               )
+               )}
+             </ul>
+           </div>
+        </div>
+      )
+    }
+
    const CurrencyTabs = () => {
       
       return (
-      <div className="row">
-       <div className="col-md-8">
-       <div class="card border-left-primary shadow h-100 py-2">
+       <div className="card border-left-primary shadow h-100 py-2">
          <div className="card-body">
        <Tabs onSelect={onChangeTab} forceRenderTabPanel={true}>
       <TabList>
@@ -351,13 +471,6 @@ const Dashboard = () => {
       )}
     </Tabs>
     </div>
-   
-    </div>
-    
-    </div>
-    <div className="col-md-4">
-      <h4>Side tab</h4>
-    </div>
     </div>
    )}
 
@@ -379,7 +492,14 @@ const Dashboard = () => {
          <SideBar/>
         </div>
         <div className="col-md-9">
-         <CurrencyTabs/>
+          <div className="row">
+           <div className="col-md-7">
+             <CurrencyTabs/>
+           </div>
+           <div className="col-md-5">
+            <TradeMarketSideBar/>
+           </div>
+          </div>
         </div>
       </div>
       
