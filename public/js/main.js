@@ -95,6 +95,12 @@
         }
     });
 
+    //Dashboard Tabs
+     $('.tabs > li').on("click", function(){
+      tabs.removeClass('active')
+      $(this).addClass('active')
+     });
+
     
 })(jQuery);
 
